@@ -2,19 +2,47 @@
   <div>
     <div class="container" :style="cssStyleContainer">
       <div
-        v-if="separations === 1"
+        v-if="separations === '1'"
         class="separation"
-        :style="cssStyle1Separation"
+        :style="{
+          width: insideWidth + '%',
+        }"
       ></div>
-      <div v-elseif="separations === 2">
-        <div class="separation separation-2"></div>
-        <div class="separation separation-2"></div>
-      </div>
-      <div v-elseif="separations === 3">
-        <div class="separation separation-3"></div>
-        <div class="separation separation-3"></div>
-        <div class="separation separation-3"></div>
-      </div>
+      <div
+        v-if="separations === '2'"
+        class="separation"
+        :style="{
+          width: insideWidth + '%',
+        }"
+      ></div>
+      <div
+        v-if="separations === '2'"
+        class="separation"
+        :style="{
+          width: insideWidth + '%',
+        }"
+      ></div>
+      <div
+        class="separation separation-3"
+        :style="{
+          width: insideWidth + '%',
+        }"
+        v-if="separations === '3'"
+      ></div>
+      <div
+        class="separation separation-3"
+        :style="{
+          width: insideWidth + '%',
+        }"
+        v-if="separations === '3'"
+      ></div>
+      <div
+        class="separation separation-3"
+        :style="{
+          width: insideWidth + '%',
+        }"
+        v-if="separations === '3'"
+      ></div>
     </div>
     <div class="inputs">
       <div class="inputs input">
@@ -34,8 +62,8 @@
       <div class="inputs input">
         <p v-if="space.id === 0">Que estilo?</p>
         <select
-          name="style"
-          id="style"
+          name="styleSeparations"
+          id="styleSeparations"
           v-model="styleSeparations"
           placeholder="centrado"
         >
@@ -44,6 +72,9 @@
           <option value="right">derecha</option>
         </select>
       </div>
+      <button v-if="space.id == heights.length - 1" @click="confirmSeparations">
+        Confirmar separaciones
+      </button>
     </div>
   </div>
 </template>
@@ -54,13 +85,12 @@ export default {
   props: ['space'],
   data() {
     return {
-      width: [50, 33.3, 25],
       qttySeparations: 0,
-      styleSeperations: 'centered',
+      styleSeparations: 'centered',
     };
   },
   computed: {
-    ...mapGetters(['totalWidth']),
+    ...mapGetters(['totalWidth', 'heights']),
     separations() {
       return this.qttySeparations;
     },
@@ -70,10 +100,36 @@ export default {
         height: this.space.height * 3 + 'px',
       };
     },
-    cssStyle1Separation() {
-      return {
-        width: '50px',
-      };
+    styleChangeWidth() {
+      if (this.styleSeparations === 'centered') {
+        return 0;
+      } else if (this.styleSeparations === 'left') {
+        return -12 / this.qttySeparations;
+      } else {
+        return 12 / this.qttySeparations;
+      }
+    },
+    insideWidth() {
+      if (this.qttySeparations === '1') {
+        return 50 + this.styleChangeWidth;
+      } else if (this.qttySeparations === '2') {
+        return 33.3 + this.styleChangeWidth;
+      } else if (this.qttySeparations === '3') {
+        return 25 + this.styleChangeWidth;
+      } else {
+        return 100;
+      }
+    },
+  },
+  methods: {
+    confirmSeparations() {
+      const separations = [];
+      for (let i = 0; i < this.qttySeparations; i++) {
+        separations.push(this.insideWidth);
+      }
+      separations.push(
+        this.totalWidth - separations.reduce((acc, sep) => acc + sep, 0)
+      );
     },
   },
 };
@@ -81,6 +137,7 @@ export default {
 
 <style scoped>
 .container {
+  text-align: left;
   display: inline-block;
   vertical-align: middle;
   border: 2px solid rgb(117, 62, 14);

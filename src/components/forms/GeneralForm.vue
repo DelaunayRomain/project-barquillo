@@ -38,7 +38,7 @@ export default {
           id: i,
           height: this.getSpaceHeight(),
           confirmed: false,
-          insideSpaces: [1],
+          insideSpaces: [],
         });
       }
     },

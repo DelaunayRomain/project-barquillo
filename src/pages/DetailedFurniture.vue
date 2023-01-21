@@ -2,11 +2,13 @@
   <section class="show-furniture">
     <p>Hace click en el espacio para personalizar</p>
     <ul>
-      <space-widths
-        v-for="space in heights"
-        :key="space.id"
-        :space="space"
-      ></space-widths>
+      <keep-alive
+        ><space-widths
+          v-for="space in heights"
+          :key="space.id"
+          :space="space"
+        ></space-widths
+      ></keep-alive>
     </ul>
     <span><router-link to="/hardware">proxima etapa</router-link></span>
   </section>
