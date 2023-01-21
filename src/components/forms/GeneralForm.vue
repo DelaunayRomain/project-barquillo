@@ -1,17 +1,17 @@
 <template>
-  <section class="input-furniture">
+  <section class="general-form">
     <form @submit.prevent="generateFurniture">
       <div>
         <label>Altura en cm?</label>
-        <input type="number" v-model="furniture.totalHeight" />
+        <input type="number" v-model="$store.state.furniture.totalHeight" />
       </div>
       <div>
         <label>Ancho en cm?</label>
-        <input type="number" v-model="furniture.totalWidth" />
+        <input type="number" v-model="$store.state.furniture.totalWidth" />
       </div>
       <div>
         <label>Cuantos espacios horizontales ?</label>
-        <input type="number" v-model="furniture.qttyOfSpaces" />
+        <input type="number" v-model="$store.state.furniture.qttyHeights" />
       </div>
       <button>Ver mueble!</button>
     </form>
@@ -19,32 +19,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
-    return {
-      furniture: {
-        totalHeight: null,
-        totalWidth: null,
-        qttyOfSpaces: null,
-        spacesHorizontal: [],
-      },
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters(['totalHeight', 'qttyHeights']),
   },
   methods: {
     getSpaceHeight() {
-      return this.furniture.totalHeight / this.furniture.qttyOfSpaces;
+      return this.totalHeight / this.qttyHeights;
     },
     generateFurniture() {
-      this.furniture.spacesHorizontal = [];
-      for (let i = 0; i < this.furniture.qttyOfSpaces; i++) {
-        this.furniture.spacesHorizontal.push({
+      this.$store.state.furniture.heights = [];
+      for (let i = 0; i < this.qttyHeights; i++) {
+        this.$store.state.furniture.heights.push({
           id: i,
           height: this.getSpaceHeight(),
           confirmed: false,
           insideSpaces: [1],
         });
       }
-      this.$emit('generate-furniture', this.furniture);
     },
   },
 };
@@ -61,8 +57,8 @@ label {
   width: 7rem;
   display: inline-block;
 }
-.input-furniture {
-  float: right;
+.general-form {
+  float: left;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
   border-radius: 10px;
