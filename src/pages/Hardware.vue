@@ -3,15 +3,24 @@
     <p>Hace click en el espacio para agregar las quincaillerias</p>
     <ul>
       <keep-alive
-        ><div v-for="space in heights" :key="space.id" :space="space">
+        ><div
+          class="container"
+          :style="{
+            width: totalWidth * 3 + 'px',
+            height: space.height * 3 + 'px',
+          }"
+          v-for="space in heights"
+          :key="space.id"
+          :space="space"
+        >
           <add-hardware
-            v-for="insideWidth in space.displayInsideSpaces"
+            v-for="displayWidth in space.displayInsideSpaces"
             :key="
               space.displayInsideSpaces.findIndex(
-                (inside) => inside === insideWidth
+                (inside) => inside === displayWidth
               )
             "
-            :insideWidth="insideWidth"
+            :displayWidth="displayWidth"
           ></add-hardware></div
       ></keep-alive>
     </ul>
@@ -25,7 +34,10 @@ import { mapGetters } from 'vuex';
 export default {
   components: { AddHardware },
   computed: {
-    ...mapGetters(['heights']),
+    ...mapGetters(['heights', 'totalWidth']),
+  },
+  created() {
+    console.log(this.heights);
   },
 };
 </script>
@@ -40,5 +52,12 @@ export default {
   padding: 1rem;
   text-align: center;
   margin: 1rem 0;
+}
+
+.container {
+  text-align: left;
+
+  vertical-align: middle;
+  border: 2px solid rgb(117, 62, 14);
 }
 </style>

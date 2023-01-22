@@ -1,15 +1,18 @@
-<template><div class="separation" :style="cssStyle"></div></template>
+<template>
+  <div class="separation" :style="cssStyle"></div>
+</template>
 
 <script>
 export default {
-  props: ['insideWidth'],
+  props: ['displayWidth'],
   computed: {
     cssStyle() {
-      return { width: this.insideWidth };
+      return { width: this.displayWidth + '%' };
     },
   },
 };
 </script>
+
 <style scoped>
 .separation {
   display: inline-block;
