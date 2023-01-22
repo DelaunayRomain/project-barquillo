@@ -24,7 +24,12 @@
           ></add-hardware></div
       ></keep-alive>
     </ul>
-    <span><router-link to="/color">proxima etapa</router-link></span>
+    <span
+      ><router-link to="/detailed">etapa anterior</router-link
+      ><router-link to="/color" @click="stages.color = true"
+        >proxima etapa</router-link
+      ></span
+    >
   </section>
 </template>
 
@@ -34,7 +39,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: { AddHardware },
   computed: {
-    ...mapGetters(['heights', 'totalWidth']),
+    ...mapGetters(['heights', 'totalWidth', 'stages']),
   },
   created() {
     console.log(this.heights);

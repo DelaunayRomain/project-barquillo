@@ -2,41 +2,35 @@
   <header>
     <nav>
       <h1><router-link to="/">Dibuja tu mueble!</router-link></h1>
-      <div class="navigation" v-if="$route.path !== '/'">
-        <router-link @click="previous" :to="previousStage"
-          >anterior</router-link
-        >
-        <h1>{{ actualStage }}/5</h1>
-        <router-link @click="next" :to="nextStage">siguiente</router-link>
-      </div>
+      <router-link to="/reference" :class="{ disabled: !stages.reference }">
+        1
+      </router-link>
+      <p>-></p>
+      <router-link to="/general" :class="{ disabled: !stages.general }">
+        2
+      </router-link>
+      <p>-></p>
+      <router-link to="/detailed" :class="{ disabled: !stages.detailed }">
+        3
+      </router-link>
+      <p>-></p>
+      <router-link to="/hardware" :class="{ disabled: !stages.hardware }">
+        4
+      </router-link>
+      <p>-></p>
+      <router-link to="/color" :class="{ disabled: !stages.color }">
+        5
+      </router-link>
       <button>ayuda</button>
     </nav>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  methods: {
-    previous() {
-      this.$store.dispatch('previous');
-    },
-    next() {
-      this.$store.dispatch('next');
-    },
-  },
   computed: {
-    actualStage() {
-      return this.$store.getters.actualStage;
-    },
-    stage() {
-      return this.$store.getters.stages;
-    },
-    nextStage() {
-      return this.$store.getters.nextStage;
-    },
-    previousStage() {
-      return this.$store.getters.previousStage;
-    },
+    ...mapGetters(['stages']),
   },
 };
 </script>
@@ -103,5 +97,10 @@ li {
 
 .navigation {
   display: flex;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

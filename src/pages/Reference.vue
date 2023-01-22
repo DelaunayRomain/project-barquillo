@@ -1,7 +1,17 @@
-<template>reference</template>
+<template>
+  reference
+  <router-link to="/general" @click="stages.general = true">
+    proxima etapa</router-link
+  >
+</template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+export default {
+  computed: {
+    ...mapGetters(['stages']),
+  },
+};
 </script>
 
 <style scoped></style>

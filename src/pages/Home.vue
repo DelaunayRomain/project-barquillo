@@ -1,18 +1,16 @@
 <template>
   <h1>Muebles barquillo</h1>
   <h3>Dibuja tu mueble soñado!</h3>
-  <router-link :to="stages[actualStage]">empezar</router-link>
+  <router-link @click="stages.reference = true" to="/reference"
+    >empezar</router-link
+  >
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   computed: {
-    actualStage() {
-      return this.$store.getters.actualStage;
-    },
-    stages() {
-      return this.$store.getters.stages;
-    },
+    ...mapGetters(['stages']),
   },
 };
 </script>

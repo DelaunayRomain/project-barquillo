@@ -9,7 +9,12 @@
           :space="space"
         ></space-heights>
       </ul>
-      <span><router-link to="/detailed">proxima etapa</router-link></span>
+      <span
+        ><router-link to="/reference">etapa anterior</router-link
+        ><router-link @click="stages.detailed = true" to="/detailed"
+          >proxima etapa</router-link
+        ></span
+      >
     </div>
     <p v-else>Completa el formulario, y se dibujara tu mueble aqui!</p>
   </section>
@@ -28,7 +33,7 @@ export default {
     SpaceHeights,
   },
   computed: {
-    ...mapGetters(['heights']),
+    ...mapGetters(['heights', 'stages']),
   },
 };
 </script>

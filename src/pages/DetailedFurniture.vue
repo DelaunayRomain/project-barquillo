@@ -11,7 +11,10 @@
       ></keep-alive>
     </ul>
     <span
-      ><router-link @click="confirmSeparations" to="/hardware"
+      ><router-link to="/general">etapa anterior</router-link
+      ><router-link
+        @click="confirmSeparations, (stages.hardware = true)"
+        to="/hardware"
         >proxima etapa</router-link
       ></span
     >
@@ -24,7 +27,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: { SpaceWidths },
   computed: {
-    ...mapGetters(['heights', 'insideSpaces']),
+    ...mapGetters(['heights', 'insideSpaces', 'stages']),
   },
   methods: {
     confirmSeparations() {
