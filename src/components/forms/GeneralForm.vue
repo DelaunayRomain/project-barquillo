@@ -38,7 +38,12 @@ export default {
           id: i,
           height: this.getSpaceHeight(),
           confirmed: false,
-          insideSpaces: [],
+          insideSpaces: {
+            qttySeparations: 0,
+            styleSeparations: 'centered',
+            widthInPercentaje: null,
+          },
+          displayInsideSpaces: [],
         });
       }
     },

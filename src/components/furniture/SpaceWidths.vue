@@ -2,21 +2,21 @@
   <div>
     <div class="container" :style="cssStyleContainer">
       <div
-        v-if="separations === '1'"
+        v-if="qttySeparations === '1'"
         class="separation"
         :style="{
           width: insideWidth + '%',
         }"
       ></div>
       <div
-        v-if="separations === '2'"
+        v-if="qttySeparations === '2'"
         class="separation"
         :style="{
           width: insideWidth + '%',
         }"
       ></div>
       <div
-        v-if="separations === '2'"
+        v-if="qttySeparations === '2'"
         class="separation"
         :style="{
           width: insideWidth + '%',
@@ -27,21 +27,21 @@
         :style="{
           width: insideWidth + '%',
         }"
-        v-if="separations === '3'"
+        v-if="qttySeparations === '3'"
       ></div>
       <div
         class="separation separation-3"
         :style="{
           width: insideWidth + '%',
         }"
-        v-if="separations === '3'"
+        v-if="qttySeparations === '3'"
       ></div>
       <div
         class="separation separation-3"
         :style="{
           width: insideWidth + '%',
         }"
-        v-if="separations === '3'"
+        v-if="qttySeparations === '3'"
       ></div>
     </div>
     <div class="inputs">
@@ -51,7 +51,6 @@
           name="qttySeparations"
           id="qttySeparations"
           v-model="qttySeparations"
-          placeholder="0"
         >
           <option value="0">0</option>
           <option value="1">1</option>
@@ -65,16 +64,13 @@
           name="styleSeparations"
           id="styleSeparations"
           v-model="styleSeparations"
-          placeholder="centrado"
         >
           <option value="centered">centrado</option>
           <option value="left">izquierda</option>
           <option value="right">derecha</option>
         </select>
       </div>
-      <button v-if="space.id == heights.length - 1" @click="confirmSeparations">
-        Confirmar separaciones
-      </button>
+      <div class="confirm"></div>
     </div>
   </div>
 </template>
@@ -91,14 +87,14 @@ export default {
   },
   computed: {
     ...mapGetters(['totalWidth', 'heights']),
-    separations() {
-      return this.qttySeparations;
-    },
     cssStyleContainer() {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.space.height * 3 + 'px',
       };
+    },
+    spaceIndex() {
+      return this.heights.findIndex((space) => space.id === this.space.id);
     },
     styleChangeWidth() {
       if (this.styleSeparations === 'centered') {
@@ -121,16 +117,23 @@ export default {
       }
     },
   },
-  methods: {
-    confirmSeparations() {
-      const separations = [];
-      for (let i = 0; i < this.qttySeparations; i++) {
-        separations.push(this.insideWidth);
-      }
-      separations.push(
-        this.totalWidth - separations.reduce((acc, sep) => acc + sep, 0)
-      );
+  watch: {
+    qttySeparations(qtty) {
+      this.heights[this.spaceIndex].insideSpaces.qttySeparations = qtty;
+      this.heights[this.spaceIndex].insideSpaces.widthInPercentaje =
+        this.insideWidth;
     },
+    styleSeparations(style) {
+      this.heights[this.spaceIndex].insideSpaces.styleSeparations = style;
+      this.heights[this.spaceIndex].insideSpaces.widthInPercentaje =
+        this.insideWidth;
+    },
+  },
+  created() {
+    this.qttySeparations =
+      this.heights[this.spaceIndex].insideSpaces.qttySeparations;
+    this.styleSeparations =
+      this.heights[this.spaceIndex].insideSpaces.styleSeparations;
   },
 };
 </script>

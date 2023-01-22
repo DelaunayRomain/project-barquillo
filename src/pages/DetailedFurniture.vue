@@ -10,7 +10,11 @@
         ></space-widths
       ></keep-alive>
     </ul>
-    <span><router-link to="/hardware">proxima etapa</router-link></span>
+    <span
+      ><router-link @click="confirmSeparations" to="/hardware"
+        >proxima etapa</router-link
+      ></span
+    >
   </section>
 </template>
 
@@ -20,7 +24,24 @@ import { mapGetters } from 'vuex';
 export default {
   components: { SpaceWidths },
   computed: {
-    ...mapGetters(['heights']),
+    ...mapGetters(['heights', 'insideSpaces']),
+  },
+  methods: {
+    confirmSeparations() {
+      this.heights.forEach((space) => {
+        space.displayInsideSpaces = [];
+        for (let i = 0; i < space.insideSpaces.qttySeparations; i++) {
+          space.displayInsideSpaces.push(space.insideSpaces.widthInPercentaje);
+        }
+        space.displayInsideSpaces.push(
+          100 -
+            space.displayInsideSpaces.reduce(
+              (spaceWidth, acc) => acc + spaceWidth,
+              0
+            )
+        );
+      });
+    },
   },
 };
 </script>
