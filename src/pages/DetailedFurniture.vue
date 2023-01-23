@@ -12,9 +12,7 @@
     </ul>
     <span
       ><router-link to="/general">etapa anterior</router-link
-      ><router-link
-        @click="confirmSeparations, (stages.hardware = true)"
-        to="/hardware"
+      ><router-link @click="confirmSeparations" to="/hardware"
         >proxima etapa</router-link
       ></span
     >
@@ -31,6 +29,7 @@ export default {
   },
   methods: {
     confirmSeparations() {
+      this.stages.hardware = true;
       this.heights.forEach((space) => {
         space.displayInsideSpaces = [];
         for (let i = 0; i < space.insideSpaces.qttySeparations; i++) {
