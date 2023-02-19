@@ -1,6 +1,6 @@
 <template>
   reference
-  <router-link to="/general" @click="stages.general = true">
+  <router-link to="/shelfs" @click="stages.shelfs = true">
     proxima etapa</router-link
   >
 </template>

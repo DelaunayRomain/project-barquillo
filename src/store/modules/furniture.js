@@ -3,8 +3,8 @@ export default {
     return {
       totalHeight: null,
       totalWidth: null,
-      heights: [],
-      qttyHeights: null,
+      shelfHeights: [],
+      shelfAmount: null,
     };
   },
   mutations: {},
@@ -15,11 +15,11 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    heights(state) {
-      return state.heights;
+    shelfHeights(state) {
+      return state.shelfHeights;
     },
-    qttyHeights(state) {
-      return state.qttyHeights;
+    shelfAmount(state) {
+      return state.shelfAmount;
     },
   },
   actions: {},

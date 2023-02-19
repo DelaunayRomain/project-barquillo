@@ -1,17 +1,17 @@
 <template>
   <section class="show-furniture">
-    <div v-if="heights.length > 0">
+    <div v-if="shelfHeights.length > 0">
       <p>Hace click en el espacio para cambiar su altura</p>
       <ul>
-        <space-heights
-          v-for="space in heights"
-          :key="space.id"
-          :space="space"
-        ></space-heights>
+        <shelf-heights
+          v-for="shelf in shelfHeights"
+          :key="shelf.id"
+          :shelf="shelf"
+        ></shelf-heights>
       </ul>
       <span
         ><router-link to="/reference">etapa anterior</router-link
-        ><router-link @click="stages.detailed = true" to="/detailed"
+        ><router-link @click="stages.separators = true" to="/separators"
           >proxima etapa</router-link
         ></span
       >
@@ -24,16 +24,16 @@
 </template>
 
 <script>
-import GeneralForm from './../components/forms/GeneralForm.vue';
-import SpaceHeights from '../components/furniture/SpaceHeights.vue';
+import GeneralForm from '../components/forms/GeneralForm.vue';
+import ShelfHeights from '../components/furniture/ShelfHeights.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: {
     GeneralForm,
-    SpaceHeights,
+    ShelfHeights,
   },
   computed: {
-    ...mapGetters(['heights', 'stages']),
+    ...mapGetters(['shelfHeights', 'stages']),
   },
 };
 </script>

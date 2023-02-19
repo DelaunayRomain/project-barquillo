@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  props: ['displayWidth'],
+  props: ['spaceWidth'],
   computed: {
     cssStyle() {
-      return { width: this.displayWidth + '%' };
+      return { width: this.spaceWidth + '%' };
     },
   },
 };

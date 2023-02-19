@@ -3,8 +3,8 @@ export default {
     return {
       stages: {
         reference: false,
-        general: false,
-        detailed: false,
+        shelfs: false,
+        separators: false,
         hardware: false,
         color: false,
       },

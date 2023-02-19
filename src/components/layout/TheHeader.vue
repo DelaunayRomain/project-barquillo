@@ -6,11 +6,11 @@
         1
       </router-link>
       <p>-></p>
-      <router-link to="/general" :class="{ disabled: !stages.general }">
+      <router-link to="/shelfs" :class="{ disabled: !stages.shelfs }">
         2
       </router-link>
       <p>-></p>
-      <router-link to="/detailed" :class="{ disabled: !stages.detailed }">
+      <router-link to="/separators" :class="{ disabled: !stages.separators }">
         3
       </router-link>
       <p>-></p>

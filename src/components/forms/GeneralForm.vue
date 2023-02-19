@@ -11,7 +11,7 @@
       </div>
       <div>
         <label>Cuantos espacios horizontales ?</label>
-        <input type="number" v-model="$store.state.furniture.qttyHeights" />
+        <input type="number" v-model="$store.state.furniture.shelfAmount" />
       </div>
       <button>Ver mueble!</button>
     </form>
@@ -25,25 +25,25 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['totalHeight', 'qttyHeights']),
+    ...mapGetters(['totalHeight', 'shelfAmount']),
   },
   methods: {
     getSpaceHeight() {
-      return this.totalHeight / this.qttyHeights;
+      return this.totalHeight / this.shelfAmount;
     },
     generateFurniture() {
-      this.$store.state.furniture.heights = [];
-      for (let i = 0; i < this.qttyHeights; i++) {
-        this.$store.state.furniture.heights.push({
+      this.$store.state.furniture.shelfHeights = [];
+      for (let i = 0; i < this.shelfAmount; i++) {
+        this.$store.state.furniture.shelfHeights.push({
           id: i,
           height: this.getSpaceHeight(),
           confirmed: false,
-          insideSpaces: {
-            qttySeparations: 0,
-            styleSeparations: 'centered',
+          insideSeparators: {
+            amountOfSeparators: 0,
+            typeOfSeparators: 'centered',
             widthInPercentaje: null,
           },
-          displayInsideSpaces: [],
+          widthOfEachSeparator: [],
         });
       }
     },

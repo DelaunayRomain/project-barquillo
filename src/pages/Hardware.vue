@@ -7,25 +7,25 @@
           class="container"
           :style="{
             width: totalWidth * 3 + 'px',
-            height: space.height * 3 + 'px',
+            height: shelf.height * 3 + 'px',
           }"
-          v-for="space in heights"
-          :key="space.id"
-          :space="space"
+          v-for="shelf in shelfHeights"
+          :key="shelf.id"
+          :shelf="shelf"
         >
           <add-hardware
-            v-for="displayWidth in space.displayInsideSpaces"
+            v-for="spaceWidth in shelf.widthOfEachSeparator"
             :key="
-              space.displayInsideSpaces.findIndex(
-                (inside) => inside === displayWidth
+              shelf.widthOfEachSeparator.findIndex(
+                (width) => width === spaceWidth
               )
             "
-            :displayWidth="displayWidth"
+            :spaceWidth="spaceWidth"
           ></add-hardware></div
       ></keep-alive>
     </ul>
     <span
-      ><router-link to="/detailed">etapa anterior</router-link
+      ><router-link to="/separators">etapa anterior</router-link
       ><router-link to="/color" @click="stages.color = true"
         >proxima etapa</router-link
       ></span
@@ -39,10 +39,10 @@ import { mapGetters } from 'vuex';
 export default {
   components: { AddHardware },
   computed: {
-    ...mapGetters(['heights', 'totalWidth', 'stages']),
+    ...mapGetters(['shelfHeights', 'totalWidth', 'stages']),
   },
   created() {
-    console.log(this.heights);
+    console.log(this.shelfHeights);
   },
 };
 </script>
