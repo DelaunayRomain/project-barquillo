@@ -3,7 +3,7 @@ export default {
     return {
       totalHeight: null,
       totalWidth: null,
-      shelfHeights: [],
+      shelfs: [],
       shelfAmount: null,
     };
   },
@@ -15,8 +15,8 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfHeights(state) {
-      return state.shelfHeights;
+    shelfs(state) {
+      return state.shelfs;
     },
     shelfAmount(state) {
       return state.shelfAmount;

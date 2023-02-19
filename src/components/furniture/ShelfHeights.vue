@@ -4,7 +4,7 @@
       <div v-if="update">
         <input
           type="number"
-          v-model="newShelfHeight"
+          v-model="newHeight"
           :placeholder="shelf.height"
         /><span>cm</span>
       </div>
@@ -23,11 +23,11 @@ export default {
   data() {
     return {
       update: false,
-      newShelfHeight: null,
+      newHeight: null,
     };
   },
   computed: {
-    ...mapGetters(['totalWidth', 'shelfHeights', 'totalHeight']),
+    ...mapGetters(['totalWidth', 'shelfs', 'totalHeight']),
     cssStyle() {
       return {
         width: this.totalWidth * 3 + 'px',
@@ -39,29 +39,35 @@ export default {
           : '',
       };
     },
+    newHeightForUnconfirmedShelfs() {
+      const amountOfUnconfirmedShelfs = this.shelfs.filter(
+        (shelf) => shelf.confirmed === false
+      ).length;
+      const confirmedShelfsTotalHeight = this.shelfs
+        .filter((shelf) => shelf.confirmed === true)
+        .reduce((acc, shelf) => acc + shelf.height, 0);
+      return (
+        (this.totalHeight - confirmedShelfsTotalHeight) /
+        amountOfUnconfirmedShelfs
+      );
+    },
+    controlUserHeight() {
+      return !(this.newHeight && this.newHeight > 0);
+    },
   },
   methods: {
     updateShelfHeight() {
-      if (!(this.newShelfHeight && this.newShelfHeight > 0)) return;
-      const identifiedShelf = this.shelfHeights.find(
+      if (this.controlUserHeight) return;
+      const identifiedShelf = this.shelfs.find(
         (shelf) => shelf.id === this.shelf.id
       );
-      identifiedShelf.height = this.newShelfHeight;
+      identifiedShelf.height = this.newHeight;
       identifiedShelf.confirmed = true;
     },
     updateOtherShelfsHeights() {
-      const amountOfUnconfirmedShelfs = this.shelfHeights.filter(
-        (shelf) => shelf.confirmed === false
-      ).length;
-      const confirmedShelfsTotalHeight = this.shelfHeights
-        .filter((shelf) => shelf.confirmed === true)
-        .reduce((acc, shelf) => acc + shelf.height, 0);
-      const newHeightForUnconfirmedShelfs =
-        (this.totalHeight - confirmedShelfsTotalHeight) /
-        amountOfUnconfirmedShelfs;
-      this.shelfHeights.forEach((shelf) => {
+      this.shelfs.forEach((shelf) => {
         if (shelf.confirmed === false)
-          shelf.height = newHeightForUnconfirmedShelfs;
+          shelf.height = this.newHeightForUnconfirmedShelfs;
       });
     },
     updateFurniture() {

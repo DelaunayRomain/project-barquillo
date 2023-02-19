@@ -26,25 +26,28 @@ export default {
   },
   computed: {
     ...mapGetters(['totalHeight', 'shelfAmount']),
-  },
-  methods: {
-    getSpaceHeight() {
+    shelfHeight() {
       return this.totalHeight / this.shelfAmount;
     },
+  },
+  methods: {
+    pushShelfData(i) {
+      return {
+        id: i,
+        height: this.shelfHeight,
+        confirmed: false,
+        insideSeparators: {
+          amountOfSeparators: 0,
+          typeOfSeparators: 'centered',
+          widthInPercentaje: null,
+        },
+        widthOfEachSeparator: [],
+      };
+    },
     generateFurniture() {
-      this.$store.state.furniture.shelfHeights = [];
+      this.$store.state.furniture.shelfs = [];
       for (let i = 0; i < this.shelfAmount; i++) {
-        this.$store.state.furniture.shelfHeights.push({
-          id: i,
-          height: this.getSpaceHeight(),
-          confirmed: false,
-          insideSeparators: {
-            amountOfSeparators: 0,
-            typeOfSeparators: 'centered',
-            widthInPercentaje: null,
-          },
-          widthOfEachSeparator: [],
-        });
+        this.$store.state.furniture.shelfs.push(this.pushShelfData(i));
       }
     },
   },

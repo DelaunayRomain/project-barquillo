@@ -1,10 +1,10 @@
 <template>
   <section class="show-furniture">
-    <div v-if="shelfHeights.length > 0">
+    <div v-if="shelfs.length > 0">
       <p>Hace click en el espacio para cambiar su altura</p>
       <ul>
         <shelf-heights
-          v-for="shelf in shelfHeights"
+          v-for="shelf in shelfs"
           :key="shelf.id"
           :shelf="shelf"
         ></shelf-heights>
@@ -33,7 +33,7 @@ export default {
     ShelfHeights,
   },
   computed: {
-    ...mapGetters(['shelfHeights', 'stages']),
+    ...mapGetters(['shelfs', 'stages']),
   },
 };
 </script>

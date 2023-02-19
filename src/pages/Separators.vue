@@ -4,7 +4,7 @@
     <ul>
       <keep-alive
         ><separators-widths
-          v-for="shelf in shelfHeights"
+          v-for="shelf in shelfs"
           :key="shelf.id"
           :shelf="shelf"
         ></separators-widths
@@ -12,7 +12,7 @@
     </ul>
     <span
       ><router-link to="/shelfs">etapa anterior</router-link
-      ><router-link @click="confirmSeparators" to="/hardware"
+      ><router-link @click="generateSeparators" to="/hardware"
         >proxima etapa</router-link
       ></span
     >
@@ -25,23 +25,31 @@ import { mapGetters } from 'vuex';
 export default {
   components: { SeparatorsWidths },
   computed: {
-    ...mapGetters(['shelfHeights', 'insideSeparators', 'stages']),
+    ...mapGetters(['shelfs', 'insideSeparators', 'stages']),
   },
   methods: {
-    confirmSeparators() {
+    unlockNextPage() {
       this.stages.hardware = true;
-      this.shelfHeights.forEach((shelf) => {
-        shelf.widthOfEachSeparator = [];
-        for (let i = 0; i < shelf.insideSeparators.amountOfSeparators; i++) {
-          shelf.widthOfEachSeparator.push(
-            shelf.insideSeparators.widthInPercentaje
-          );
-        }
+    },
+    pushSeparatorsWidth(shelf) {
+      for (let i = 0; i < shelf.insideSeparators.amountOfSeparators; i++) {
         shelf.widthOfEachSeparator.push(
-          100 -
-            shelf.widthOfEachSeparator.reduce((width, acc) => acc + width, 0)
+          shelf.insideSeparators.widthInPercentaje
         );
+      }
+    },
+    pushRemainingWidth(shelf) {
+      shelf.widthOfEachSeparator.push(
+        100 - shelf.widthOfEachSeparator.reduce((width, acc) => acc + width, 0)
+      );
+    },
+    generateSeparators() {
+      this.shelfs.forEach((shelf) => {
+        shelf.widthOfEachSeparator = [];
+        this.pushSeparatorsWidth(shelf);
+        this.pushRemainingWidth(shelf);
       });
+      this.unlockNextPage();
     },
   },
 };

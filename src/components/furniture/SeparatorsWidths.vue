@@ -86,7 +86,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['totalWidth', 'shelfHeights']),
+    ...mapGetters(['totalWidth', 'shelfs']),
     cssStyleContainer() {
       return {
         width: this.totalWidth * 3 + 'px',
@@ -94,7 +94,10 @@ export default {
       };
     },
     shelfIndex() {
-      return this.shelfHeights.findIndex((shelf) => shelf.id === this.shelf.id);
+      return this.shelfs.findIndex((shelf) => shelf.id === this.shelf.id);
+    },
+    shelfSeparators() {
+      return this.shelfs[this.shelfIndex].insideSeparators;
     },
     widthVariation() {
       if (this.typeOfSeparators === 'centered') {
@@ -119,23 +122,17 @@ export default {
   },
   watch: {
     amountOfSeparators(amount) {
-      this.shelfHeights[this.shelfIndex].insideSeparators.amountOfSeparators =
-        amount;
-      this.shelfHeights[this.shelfIndex].insideSeparators.widthInPercentaje =
-        this.separatorWidth;
+      this.shelfSeparators.amountOfSeparators = amount;
+      this.shelfSeparators.widthInPercentaje = this.separatorWidth;
     },
-    typeOfSeparators(style) {
-      this.shelfHeights[this.shelfIndex].insideSeparators.typeOfSeparators =
-        style;
-      this.shelfHeights[this.shelfIndex].insideSeparators.widthInPercentaje =
-        this.separatorWidth;
+    typeOfSeparators(type) {
+      this.shelfSeparators.typeOfSeparators = type;
+      this.shelfSeparators.widthInPercentaje = this.separatorWidth;
     },
   },
   created() {
-    this.amountOfSeparators =
-      this.shelfHeights[this.shelfIndex].insideSeparators.amountOfSeparators;
-    this.typeOfSeparators =
-      this.shelfHeights[this.shelfIndex].insideSeparators.typeOfSeparators;
+    this.amountOfSeparators = this.shelfSeparators.amountOfSeparators;
+    this.typeOfSeparators = this.shelfSeparators.typeOfSeparators;
   },
 };
 </script>

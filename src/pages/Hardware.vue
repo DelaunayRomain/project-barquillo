@@ -9,7 +9,7 @@
             width: totalWidth * 3 + 'px',
             height: shelf.height * 3 + 'px',
           }"
-          v-for="shelf in shelfHeights"
+          v-for="shelf in shelfs"
           :key="shelf.id"
           :shelf="shelf"
         >
@@ -39,10 +39,10 @@ import { mapGetters } from 'vuex';
 export default {
   components: { AddHardware },
   computed: {
-    ...mapGetters(['shelfHeights', 'totalWidth', 'stages']),
+    ...mapGetters(['shelfs', 'totalWidth', 'stages']),
   },
   created() {
-    console.log(this.shelfHeights);
+    console.log(this.shelfs);
   },
 };
 </script>
