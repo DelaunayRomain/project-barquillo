@@ -3,7 +3,7 @@ export default {
     return {
       stages: {
         reference: false,
-        shelfs: false,
+        createFurniture: false,
         separators: false,
         hardware: false,
         color: false,

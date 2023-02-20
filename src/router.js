@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 import ColorFurniture from './pages/ColorFurniture.vue';
 import Separators from './pages/Separators.vue';
-import Shelfs from './pages/Shelfs.vue';
+import CreateFurniture from './pages/CreateFurniture.vue';
 import Hardware from './pages/Hardware.vue';
 import Reference from './pages/Reference.vue';
 import Home from './pages/Home.vue';
@@ -13,7 +13,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/reference', component: Reference },
-    { path: '/shelfs', component: Shelfs },
+    { path: '/create-furniture', component: CreateFurniture },
     { path: '/separators', component: Separators },
     { path: '/hardware', component: Hardware },
     { path: '/color', component: ColorFurniture },

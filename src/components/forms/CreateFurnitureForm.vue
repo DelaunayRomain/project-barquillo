@@ -1,17 +1,17 @@
 <template>
   <section class="general-form">
-    <form @submit.prevent="generateFurniture">
+    <form @submit.prevent="createFurniture">
       <div>
         <label>Altura en cm?</label>
-        <input type="number" v-model="$store.state.furniture.totalHeight" />
+        <input type="number" v-model="furniture.totalHeight" />
       </div>
       <div>
         <label>Ancho en cm?</label>
-        <input type="number" v-model="$store.state.furniture.totalWidth" />
+        <input type="number" v-model="furniture.totalWidth" />
       </div>
       <div>
         <label>Cuantos espacios horizontales ?</label>
-        <input type="number" v-model="$store.state.furniture.shelfAmount" />
+        <input type="number" v-model="furniture.shelfsAmount" />
       </div>
       <button>Ver mueble!</button>
     </form>
@@ -19,21 +19,36 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
   data() {
-    return {};
+    return {
+      furniture: {
+        shelfs: [],
+        totalHeight: 0,
+        totalWidth: 0,
+        shelfsAmount: 0,
+      },
+    };
   },
   computed: {
-    ...mapGetters(['totalHeight', 'shelfAmount']),
     shelfHeight() {
-      return this.totalHeight / this.shelfAmount;
+      return this.furniture.totalHeight / this.furniture.shelfsAmount;
     },
   },
   methods: {
-    pushShelfData(i) {
+    createFurniture() {
+      this.createShelfs();
+      this.$store.state.furniture = this.furniture;
+    },
+    createShelfs() {
+      this.furniture.shelfs = [];
+      for (let id = 0; id < this.furniture.shelfsAmount; id++) {
+        this.furniture.shelfs.push(this.pushShelf(id));
+      }
+    },
+    pushShelf(id) {
       return {
-        id: i,
+        id: id,
         height: this.shelfHeight,
         confirmed: false,
         insideSeparators: {
@@ -43,12 +58,6 @@ export default {
         },
         widthOfEachSeparator: [],
       };
-    },
-    generateFurniture() {
-      this.$store.state.furniture.shelfs = [];
-      for (let i = 0; i < this.shelfAmount; i++) {
-        this.$store.state.furniture.shelfs.push(this.pushShelfData(i));
-      }
     },
   },
 };

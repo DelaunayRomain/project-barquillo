@@ -4,22 +4,22 @@ export default {
       totalHeight: null,
       totalWidth: null,
       shelfs: [],
-      shelfAmount: null,
+      shelfsAmount: null,
     };
   },
   mutations: {},
   getters: {
+    shelfs(state) {
+      return state.shelfs;
+    },
     totalHeight(state) {
       return state.totalHeight;
     },
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfs(state) {
-      return state.shelfs;
-    },
-    shelfAmount(state) {
-      return state.shelfAmount;
+    shelfsAmount(state) {
+      return state.shelfsAmount;
     },
   },
   actions: {},

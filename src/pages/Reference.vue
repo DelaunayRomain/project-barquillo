@@ -1,6 +1,6 @@
 <template>
   reference
-  <router-link to="/shelfs" @click="stages.shelfs = true">
+  <router-link to="/create-furniture" @click="unlockNextPage">
     proxima etapa</router-link
   >
 </template>
@@ -10,6 +10,11 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters(['stages']),
+  },
+  methods: {
+    unlockNextPage() {
+      this.stages.createFurniture = true;
+    },
   },
 };
 </script>

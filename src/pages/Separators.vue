@@ -11,7 +11,7 @@
       ></keep-alive>
     </ul>
     <span
-      ><router-link to="/shelfs">etapa anterior</router-link
+      ><router-link to="/create-furniture">etapa anterior</router-link
       ><router-link @click="generateSeparators" to="/hardware"
         >proxima etapa</router-link
       ></span

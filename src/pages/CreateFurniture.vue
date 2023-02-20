@@ -1,39 +1,40 @@
 <template>
+  <keep-alive>
+    <create-furniture-form></create-furniture-form>
+  </keep-alive>
   <section class="show-furniture">
     <div v-if="shelfs.length > 0">
       <p>Hace click en el espacio para cambiar su altura</p>
       <ul>
-        <shelf-heights
-          v-for="shelf in shelfs"
-          :key="shelf.id"
-          :shelf="shelf"
-        ></shelf-heights>
+        <shelf v-for="shelf in shelfs" :key="shelf.id" :shelf="shelf"></shelf>
       </ul>
       <span
         ><router-link to="/reference">etapa anterior</router-link
-        ><router-link @click="stages.separators = true" to="/separators"
+        ><router-link @click="unlockNextPage" to="/separators"
           >proxima etapa</router-link
         ></span
       >
     </div>
     <p v-else>Completa el formulario, y se dibujara tu mueble aqui!</p>
   </section>
-  <keep-alive>
-    <general-form></general-form>
-  </keep-alive>
 </template>
 
 <script>
-import GeneralForm from '../components/forms/GeneralForm.vue';
-import ShelfHeights from '../components/furniture/ShelfHeights.vue';
+import CreateFurnitureForm from '../components/forms/CreateFurnitureForm.vue';
+import Shelf from '../components/furniture/Shelf.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: {
-    GeneralForm,
-    ShelfHeights,
+    CreateFurnitureForm,
+    Shelf,
   },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
+  },
+  methods: {
+    unlockNextPage() {
+      this.stages.separators = true;
+    },
   },
 };
 </script>
