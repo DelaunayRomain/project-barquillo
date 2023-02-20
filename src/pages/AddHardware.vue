@@ -13,7 +13,7 @@
           :key="shelf.id"
           :shelf="shelf"
         >
-          <add-hardware
+          <hardware
             v-for="spaceWidth in shelf.widthOfEachSeparator"
             :key="
               shelf.widthOfEachSeparator.findIndex(
@@ -21,11 +21,11 @@
               )
             "
             :spaceWidth="spaceWidth"
-          ></add-hardware></div
+          ></hardware></div
       ></keep-alive>
     </ul>
     <span
-      ><router-link to="/separators">etapa anterior</router-link
+      ><router-link to="/add-separators">etapa anterior</router-link
       ><router-link to="/color" @click="stages.color = true"
         >proxima etapa</router-link
       ></span
@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import AddHardware from '../components/furniture/AddHardware.vue';
+import Hardware from '../components/furniture/Hardware.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { AddHardware },
+  components: { Hardware },
   computed: {
     ...mapGetters(['shelfs', 'totalWidth', 'stages']),
   },

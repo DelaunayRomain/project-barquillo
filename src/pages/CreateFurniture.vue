@@ -10,7 +10,7 @@
       </ul>
       <span
         ><router-link to="/reference">etapa anterior</router-link
-        ><router-link @click="unlockNextPage" to="/separators"
+        ><router-link @click="unlockNextPage" to="/add-separators"
           >proxima etapa</router-link
         ></span
       >
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     unlockNextPage() {
-      this.stages.separators = true;
+      this.stages.addSeparators = true;
     },
   },
 };

@@ -4,8 +4,8 @@ export default {
       stages: {
         reference: false,
         createFurniture: false,
-        separators: false,
-        hardware: false,
+        addSeparators: false,
+        addHardware: false,
         color: false,
       },
     };

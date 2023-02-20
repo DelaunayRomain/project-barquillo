@@ -3,16 +3,16 @@
     <p>Hace click en el espacio para personalizar</p>
     <ul>
       <keep-alive
-        ><separators-widths
+        ><separators
           v-for="shelf in shelfs"
           :key="shelf.id"
           :shelf="shelf"
-        ></separators-widths
+        ></separators
       ></keep-alive>
     </ul>
     <span
       ><router-link to="/create-furniture">etapa anterior</router-link
-      ><router-link @click="generateSeparators" to="/hardware"
+      ><router-link @click="generateSeparators" to="/add-hardware"
         >proxima etapa</router-link
       ></span
     >
@@ -20,16 +20,21 @@
 </template>
 
 <script>
-import SeparatorsWidths from '../components/furniture/SeparatorsWidths.vue';
+import Separators from '../components/furniture/Separators.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { SeparatorsWidths },
+  components: { Separators },
   computed: {
     ...mapGetters(['shelfs', 'insideSeparators', 'stages']),
   },
   methods: {
-    unlockNextPage() {
-      this.stages.hardware = true;
+    generateSeparators() {
+      this.shelfs.forEach((shelf) => {
+        shelf.widthOfEachSeparator = [];
+        this.pushSeparatorsWidth(shelf);
+        this.pushRemainingWidth(shelf);
+      });
+      this.unlockNextPage();
     },
     pushSeparatorsWidth(shelf) {
       for (let i = 0; i < shelf.insideSeparators.amountOfSeparators; i++) {
@@ -43,13 +48,8 @@ export default {
         100 - shelf.widthOfEachSeparator.reduce((width, acc) => acc + width, 0)
       );
     },
-    generateSeparators() {
-      this.shelfs.forEach((shelf) => {
-        shelf.widthOfEachSeparator = [];
-        this.pushSeparatorsWidth(shelf);
-        this.pushRemainingWidth(shelf);
-      });
-      this.unlockNextPage();
+    unlockNextPage() {
+      this.stages.addHardware = true;
     },
   },
 };
