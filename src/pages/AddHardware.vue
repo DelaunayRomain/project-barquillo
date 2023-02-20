@@ -14,9 +14,9 @@
           :shelf="shelf"
         >
           <hardware
-            v-for="spaceWidth in shelf.widthOfEachSeparator"
+            v-for="spaceWidth in shelf.insideSeparators.widthOfEachSpace"
             :key="
-              shelf.widthOfEachSeparator.findIndex(
+              shelf.insideSeparators.widthOfEachSpace.findIndex(
                 (width) => width === spaceWidth
               )
             "

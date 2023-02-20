@@ -12,7 +12,7 @@
     </ul>
     <span
       ><router-link to="/create-furniture">etapa anterior</router-link
-      ><router-link @click="generateSeparators" to="/add-hardware"
+      ><router-link @click="unlockNextPage" to="/add-hardware"
         >proxima etapa</router-link
       ></span
     >
@@ -28,26 +28,6 @@ export default {
     ...mapGetters(['shelfs', 'insideSeparators', 'stages']),
   },
   methods: {
-    generateSeparators() {
-      this.shelfs.forEach((shelf) => {
-        shelf.widthOfEachSeparator = [];
-        this.pushSeparatorsWidth(shelf);
-        this.pushRemainingWidth(shelf);
-      });
-      this.unlockNextPage();
-    },
-    pushSeparatorsWidth(shelf) {
-      for (let i = 0; i < shelf.insideSeparators.amountOfSeparators; i++) {
-        shelf.widthOfEachSeparator.push(
-          shelf.insideSeparators.widthInPercentaje
-        );
-      }
-    },
-    pushRemainingWidth(shelf) {
-      shelf.widthOfEachSeparator.push(
-        100 - shelf.widthOfEachSeparator.reduce((width, acc) => acc + width, 0)
-      );
-    },
     unlockNextPage() {
       this.stages.addHardware = true;
     },

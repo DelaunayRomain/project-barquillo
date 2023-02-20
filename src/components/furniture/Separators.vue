@@ -2,21 +2,21 @@
   <div>
     <div class="container" :style="cssStyleContainer">
       <div
-        v-if="amountOfSeparators === '1'"
+        v-if="separators.amountOfSeparators === '1'"
         class="separator"
         :style="{
           width: separatorWidth + '%',
         }"
       ></div>
       <div
-        v-if="amountOfSeparators === '2'"
+        v-if="separators.amountOfSeparators === '2'"
         class="separator"
         :style="{
           width: separatorWidth + '%',
         }"
       ></div>
       <div
-        v-if="amountOfSeparators === '2'"
+        v-if="separators.amountOfSeparators === '2'"
         class="separator"
         :style="{
           width: separatorWidth + '%',
@@ -27,21 +27,21 @@
         :style="{
           width: separatorWidth + '%',
         }"
-        v-if="amountOfSeparators === '3'"
+        v-if="separators.amountOfSeparators === '3'"
       ></div>
       <div
         class="separator"
         :style="{
           width: separatorWidth + '%',
         }"
-        v-if="amountOfSeparators === '3'"
+        v-if="separators.amountOfSeparators === '3'"
       ></div>
       <div
         class="separator"
         :style="{
           width: separatorWidth + '%',
         }"
-        v-if="amountOfSeparators === '3'"
+        v-if="separators.amountOfSeparators === '3'"
       ></div>
     </div>
     <div class="inputs">
@@ -50,7 +50,8 @@
         <select
           name="amountOfSeparators"
           id="amountOfSeparators"
-          v-model="amountOfSeparators"
+          v-model="separators.amountOfSeparators"
+          @change="updateSeparators"
         >
           <option value="0">0</option>
           <option value="1">1</option>
@@ -63,7 +64,8 @@
         <select
           name="typeOfSeparators"
           id="typeOfSeparators"
-          v-model="typeOfSeparators"
+          v-model="separators.typeOfSeparators"
+          @change="updateSeparators()"
         >
           <option value="centered">centrado</option>
           <option value="left">izquierda</option>
@@ -81,8 +83,7 @@ export default {
   props: ['shelf'],
   data() {
     return {
-      amountOfSeparators: 0,
-      typeOfSeparators: 'centered',
+      separators: this.shelf.insideSeparators,
     };
   },
   computed: {
@@ -93,46 +94,58 @@ export default {
         height: this.shelf.height * 3 + 'px',
       };
     },
-    shelfIndex() {
-      return this.shelfs.findIndex((shelf) => shelf.id === this.shelf.id);
-    },
-    shelfSeparators() {
-      return this.shelfs[this.shelfIndex].insideSeparators;
-    },
     widthVariation() {
-      if (this.typeOfSeparators === 'centered') {
+      if (this.separators.typeOfSeparators === 'centered') {
         return 0;
-      } else if (this.typeOfSeparators === 'left') {
-        return -12 / this.amountOfSeparators;
+      } else if (this.separators.typeOfSeparators === 'left') {
+        return -12 / this.separators.amountOfSeparators;
       } else {
-        return 12 / this.amountOfSeparators;
+        return 12 / this.separators.amountOfSeparators;
       }
     },
     separatorWidth() {
-      if (this.amountOfSeparators === '1') {
+      if (this.separators.amountOfSeparators === '1') {
         return 50 + this.widthVariation;
-      } else if (this.amountOfSeparators === '2') {
+      } else if (this.separators.amountOfSeparators === '2') {
         return 33.3 + this.widthVariation;
-      } else if (this.amountOfSeparators === '3') {
+      } else if (this.separators.amountOfSeparators === '3') {
         return 25 + this.widthVariation;
       } else {
         return 100;
       }
     },
-  },
-  watch: {
-    amountOfSeparators(amount) {
-      this.shelfSeparators.amountOfSeparators = amount;
-      this.shelfSeparators.widthInPercentaje = this.separatorWidth;
-    },
-    typeOfSeparators(type) {
-      this.shelfSeparators.typeOfSeparators = type;
-      this.shelfSeparators.widthInPercentaje = this.separatorWidth;
+    identifiedSeparators() {
+      const shelf = this.shelfs.find((shelf) => shelf.id === this.shelf.id);
+      return shelf.insideSeparators;
     },
   },
-  created() {
-    this.amountOfSeparators = this.shelfSeparators.amountOfSeparators;
-    this.typeOfSeparators = this.shelfSeparators.typeOfSeparators;
+  methods: {
+    updateSeparators() {
+      this.updateWidthBetweenSeparators();
+      this.updateSeparatorsInStore();
+    },
+    updateWidthBetweenSeparators() {
+      this.separators.widthOfEachSpace = [];
+      this.pushSeparatorWidth();
+      this.pushRemainingWidth();
+    },
+    pushSeparatorWidth() {
+      for (let i = 0; i < this.separators.amountOfSeparators; i++) {
+        this.separators.widthOfEachSpace.push(this.separatorWidth);
+      }
+    },
+    pushRemainingWidth() {
+      this.separators.widthOfEachSpace.push(
+        100 -
+          this.separators.widthOfEachSpace.reduce(
+            (width, acc) => acc + width,
+            0
+          )
+      );
+    },
+    updateSeparatorsInStore() {
+      this.identifiedSeparators = this.separators;
+    },
   },
 };
 </script>

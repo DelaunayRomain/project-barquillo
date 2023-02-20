@@ -54,9 +54,8 @@ export default {
         insideSeparators: {
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          widthInPercentaje: null,
+          widthOfEachSpace: [],
         },
-        widthOfEachSeparator: [],
       };
     },
   },
