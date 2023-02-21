@@ -31,13 +31,15 @@
       ></span
     >
   </section>
+  <add-hardware-form></add-hardware-form>
 </template>
 
 <script>
 import Hardware from '../components/furniture/Hardware.vue';
+import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Hardware },
+  components: { Hardware, AddHardwareForm },
   computed: {
     ...mapGetters(['shelfs', 'totalWidth', 'stages']),
   },

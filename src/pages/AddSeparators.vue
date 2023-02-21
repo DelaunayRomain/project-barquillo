@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: { Separators },
   computed: {
-    ...mapGetters(['shelfs', 'insideSeparators', 'stages']),
+    ...mapGetters(['shelfs', 'stages']),
   },
   methods: {
     unlockNextPage() {
