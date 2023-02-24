@@ -43,7 +43,6 @@ export default {
     unlockHardware(typeOfHardware) {
       this.resetHardware();
       this.hardware[typeOfHardware] = true;
-      console.log(this.hardware);
     },
     resetHardware() {
       this.hardware.door = false;

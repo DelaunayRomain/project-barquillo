@@ -54,7 +54,7 @@ export default {
         insideSpaces: {
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          spaces: [],
+          spaces: [{ id: 1, width: 100 }],
         },
       };
     },
