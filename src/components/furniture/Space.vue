@@ -14,7 +14,21 @@ export default {
   computed: {
     ...mapGetters(['shelfs', 'hardware']),
     cssStyle() {
-      return { width: this.space.width + '%' };
+      return {
+        width: this.space.width + '%',
+        backgroundColor: this.backgroundColor,
+      };
+    },
+    backgroundColor() {
+      if (this.space.hardware === 'door') {
+        return 'rgb(255, 127, 80)';
+      } else if (this.space.hardware === 'foldingDoor') {
+        return 'rgb(189, 183, 107)';
+      } else if (this.space.hardware === 'drawer') {
+        return 'rgb(0, 139, 139)';
+      } else {
+        return '';
+      }
     },
     identifiedSpace() {
       const space = this.shelf.insideSpaces.spaces.find(

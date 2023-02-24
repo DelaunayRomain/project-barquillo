@@ -126,7 +126,6 @@ export default {
     updateSeparators() {
       this.updateWidthBetweenSeparators();
       this.updateSeparatorsInStore();
-      console.log(this.insideSpaces.spaces);
     },
     updateWidthBetweenSeparators() {
       this.insideSpaces.spaces = [];
