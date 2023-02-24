@@ -21,6 +21,7 @@
     >
       Cajon
     </div>
+    <div class="hardware" @click="resetHardware">Reset</div>
   </section>
 </template>
 
@@ -34,7 +35,6 @@ export default {
     ...mapGetters(['hardware']),
     styleIfUnlocked() {
       return {
-        border: 'solid',
         transform: 'scale(1.5)',
       };
     },
@@ -61,6 +61,7 @@ export default {
   padding: 1rem;
   transition: 0.2s;
   cursor: pointer;
+  border: solid;
 }
 .hardware--door {
   background-color: rgb(255, 127, 80);
