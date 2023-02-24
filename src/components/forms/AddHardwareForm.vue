@@ -21,7 +21,7 @@
     >
       Cajon
     </div>
-    <div class="hardware" @click="resetHardware">Reset</div>
+    <div class="hardware" @click="resetFurnitureHardware">Reset</div>
   </section>
 </template>
 
@@ -32,7 +32,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['hardware']),
+    ...mapGetters(['hardware', 'shelfs']),
     styleIfUnlocked() {
       return {
         transform: 'scale(1.5)',
@@ -49,6 +49,12 @@ export default {
       this.hardware.door = false;
       this.hardware.foldingDoor = false;
       this.hardware.drawer = false;
+    },
+    resetFurnitureHardware() {
+      this.resetHardware();
+      this.shelfs.forEach(function (shelf) {
+        shelf.insideSpaces.spaces.forEach((space) => (space.hardware = ''));
+      });
     },
   },
 };
