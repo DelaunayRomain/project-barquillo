@@ -6,15 +6,24 @@
         1
       </router-link>
       <p>-></p>
-      <router-link to="/shelfs" :class="{ disabled: !stages.shelfs }">
+      <router-link
+        to="/create-furniture"
+        :class="{ disabled: !stages.createFurniture }"
+      >
         2
       </router-link>
       <p>-></p>
-      <router-link to="/separators" :class="{ disabled: !stages.separators }">
+      <router-link
+        to="/add-separators"
+        :class="{ disabled: !stages.addSeparators }"
+      >
         3
       </router-link>
       <p>-></p>
-      <router-link to="/hardware" :class="{ disabled: !stages.hardware }">
+      <router-link
+        to="/add-hardware"
+        :class="{ disabled: !stages.addHardware }"
+      >
         4
       </router-link>
       <p>-></p>
