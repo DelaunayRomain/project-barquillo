@@ -2,46 +2,46 @@
   <div>
     <div class="container" :style="cssStyleContainer">
       <div
-        v-if="separators.amountOfSeparators === '1'"
+        v-if="insideSpaces.amountOfSeparators === '1'"
         class="separator"
         :style="{
-          width: separatorWidth + '%',
+          width: spaceWidth + '%',
         }"
       ></div>
       <div
-        v-if="separators.amountOfSeparators === '2'"
+        v-if="insideSpaces.amountOfSeparators === '2'"
         class="separator"
         :style="{
-          width: separatorWidth + '%',
+          width: spaceWidth + '%',
         }"
       ></div>
       <div
-        v-if="separators.amountOfSeparators === '2'"
+        v-if="insideSpaces.amountOfSeparators === '2'"
         class="separator"
         :style="{
-          width: separatorWidth + '%',
+          width: spaceWidth + '%',
         }"
-      ></div>
-      <div
-        class="separator"
-        :style="{
-          width: separatorWidth + '%',
-        }"
-        v-if="separators.amountOfSeparators === '3'"
       ></div>
       <div
         class="separator"
         :style="{
-          width: separatorWidth + '%',
+          width: spaceWidth + '%',
         }"
-        v-if="separators.amountOfSeparators === '3'"
+        v-if="insideSpaces.amountOfSeparators === '3'"
       ></div>
       <div
         class="separator"
         :style="{
-          width: separatorWidth + '%',
+          width: spaceWidth + '%',
         }"
-        v-if="separators.amountOfSeparators === '3'"
+        v-if="insideSpaces.amountOfSeparators === '3'"
+      ></div>
+      <div
+        class="separator"
+        :style="{
+          width: spaceWidth + '%',
+        }"
+        v-if="insideSpaces.amountOfSeparators === '3'"
       ></div>
     </div>
     <div class="inputs">
@@ -50,7 +50,7 @@
         <select
           name="amountOfSeparators"
           id="amountOfSeparators"
-          v-model="separators.amountOfSeparators"
+          v-model="insideSpaces.amountOfSeparators"
           @change="updateSeparators"
         >
           <option value="0">0</option>
@@ -64,7 +64,7 @@
         <select
           name="typeOfSeparators"
           id="typeOfSeparators"
-          v-model="separators.typeOfSeparators"
+          v-model="insideSpaces.typeOfSeparators"
           @change="updateSeparators()"
         >
           <option value="centered">centrado</option>
@@ -83,7 +83,7 @@ export default {
   props: ['shelf'],
   data() {
     return {
-      separators: this.shelf.insideSeparators,
+      insideSpaces: this.shelf.insideSpaces,
     };
   },
   computed: {
@@ -94,29 +94,32 @@ export default {
         height: this.shelf.height * 3 + 'px',
       };
     },
-    widthVariation() {
-      if (this.separators.typeOfSeparators === 'centered') {
+    widthVariationRelatedToTypeOfSeparator() {
+      if (this.insideSpaces.typeOfSeparators === 'centered') {
         return 0;
-      } else if (this.separators.typeOfSeparators === 'left') {
-        return -12 / this.separators.amountOfSeparators;
+      } else if (this.insideSpaces.typeOfSeparators === 'left') {
+        return -12 / this.insideSpaces.amountOfSeparators;
       } else {
-        return 12 / this.separators.amountOfSeparators;
+        return 12 / this.insideSpaces.amountOfSeparators;
       }
     },
-    separatorWidth() {
-      if (this.separators.amountOfSeparators === '1') {
-        return 50 + this.widthVariation;
-      } else if (this.separators.amountOfSeparators === '2') {
-        return 33.3 + this.widthVariation;
-      } else if (this.separators.amountOfSeparators === '3') {
-        return 25 + this.widthVariation;
+    spaceWidth() {
+      if (this.insideSpaces.amountOfSeparators === '1') {
+        return 50 + this.widthVariationRelatedToTypeOfSeparator;
+      } else if (this.insideSpaces.amountOfSeparators === '2') {
+        return 33.3 + this.widthVariationRelatedToTypeOfSeparator;
+      } else if (this.insideSpaces.amountOfSeparators === '3') {
+        return 25 + this.widthVariationRelatedToTypeOfSeparator;
       } else {
         return 100;
       }
     },
     identifiedSeparators() {
       const shelf = this.shelfs.find((shelf) => shelf.id === this.shelf.id);
-      return shelf.insideSeparators;
+      return shelf.insideSpaces;
+    },
+    remainingWidth() {
+      return 100 - this.insideSpaces.amountOfSeparators * this.spaceWidth;
     },
   },
   methods: {
@@ -125,26 +128,23 @@ export default {
       this.updateSeparatorsInStore();
     },
     updateWidthBetweenSeparators() {
-      this.separators.widthOfEachSpace = [];
+      this.insideSpaces.spaces = [];
       this.pushSeparatorWidth();
       this.pushRemainingWidth();
     },
     pushSeparatorWidth() {
-      for (let i = 0; i < this.separators.amountOfSeparators; i++) {
-        this.separators.widthOfEachSpace.push(this.separatorWidth);
+      for (let id = 0; id < this.insideSpaces.amountOfSeparators; id++) {
+        this.insideSpaces.spaces.push({ id: id, width: this.spaceWidth });
       }
     },
     pushRemainingWidth() {
-      this.separators.widthOfEachSpace.push(
-        100 -
-          this.separators.widthOfEachSpace.reduce(
-            (width, acc) => acc + width,
-            0
-          )
-      );
+      this.insideSpaces.spaces.push({
+        id: this.insideSpaces.spaces.length,
+        width: this.remainingWidth,
+      });
     },
     updateSeparatorsInStore() {
-      this.identifiedSeparators = this.separators;
+      this.identifiedSeparators = this.insideSpaces;
     },
   },
 };

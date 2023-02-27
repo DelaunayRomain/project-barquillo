@@ -13,15 +13,12 @@
           :key="shelf.id"
           :shelf="shelf"
         >
-          <hardware
-            v-for="spaceWidth in shelf.insideSeparators.widthOfEachSpace"
-            :key="
-              shelf.insideSeparators.widthOfEachSpace.findIndex(
-                (width) => width === spaceWidth
-              )
-            "
-            :spaceWidth="spaceWidth"
-          ></hardware></div
+          <space
+            v-for="space in shelf.insideSpaces.spaces"
+            :key="space.id"
+            :mySpace="space"
+            :shelf="shelf"
+          ></space></div
       ></keep-alive>
     </ul>
     <span
@@ -31,18 +28,17 @@
       ></span
     >
   </section>
+  <add-hardware-form></add-hardware-form>
 </template>
 
 <script>
-import Hardware from '../components/furniture/Hardware.vue';
+import Space from '../components/furniture/Space.vue';
+import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Hardware },
+  components: { Space, AddHardwareForm },
   computed: {
     ...mapGetters(['shelfs', 'totalWidth', 'stages']),
-  },
-  created() {
-    console.log(this.shelfs);
   },
 };
 </script>

@@ -51,10 +51,10 @@ export default {
         id: id,
         height: this.shelfHeight,
         confirmed: false,
-        insideSeparators: {
+        insideSpaces: {
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          widthOfEachSpace: [],
+          spaces: [{ id: 1, width: 100 }],
         },
       };
     },
