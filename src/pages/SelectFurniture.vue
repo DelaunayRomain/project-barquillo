@@ -28,18 +28,23 @@ export default {
 
 <style scoped>
 h1 {
+  margin-top: 2rem;
   text-align: center;
 }
 .furniture {
   width: 30vw;
   height: 70vh;
-  border-radius: 3px;
-  border: solid;
   position: relative;
-  margin: 1rem;
   display: inline-block;
   text-decoration: none;
   color: black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin: 1rem;
+  border-radius: 10px;
+
+  :hover {
+    transform: scale(2);
+  }
 }
 
 .furniture--name {
