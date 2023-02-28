@@ -9,7 +9,7 @@
         <shelf v-for="shelf in shelfs" :key="shelf.id" :shelf="shelf"></shelf>
       </ul>
       <span
-        ><router-link to="/reference">etapa anterior</router-link
+        ><router-link to="/select-furniture">etapa anterior</router-link
         ><router-link @click="unlockNextPage" to="/add-separators"
           >proxima etapa</router-link
         ></span

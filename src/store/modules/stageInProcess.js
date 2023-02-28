@@ -2,7 +2,7 @@ export default {
   state() {
     return {
       stages: {
-        reference: false,
+        selectFurniture: false,
         createFurniture: false,
         addSeparators: false,
         addHardware: false,

@@ -2,7 +2,10 @@
   <header>
     <nav>
       <h1><router-link to="/">Dibuja tu mueble!</router-link></h1>
-      <router-link to="/reference" :class="{ disabled: !stages.reference }">
+      <router-link
+        to="/select-furniture"
+        :class="{ disabled: !stages.selectFurniture }"
+      >
         1
       </router-link>
       <p>-></p>
