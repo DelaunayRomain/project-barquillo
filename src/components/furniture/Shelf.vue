@@ -1,34 +1,36 @@
 <template>
-  <div>
+  <div class="flex-container">
     <div class="shelf-height" :style="cssStyle" @click="openUpdateModal">
       <div v-if="isUpdating">
-        <input
-          type="number"
-          v-model="newHeight"
-          :placeholder="shelf.height"
-        /><span>cm</span>
+        <div class="update-input">
+          <input
+            type="number"
+            v-model="newHeight"
+            :placeholder="shelf.height"
+          /><span>cm</span>
+        </div>
       </div>
       <p v-else>{{ shelf.height }} cm</p>
     </div>
-    <div class="button">
-      <button v-if="isUpdating" @click="updateFurniture">OK</button>
-    </div>
+    <button v-if="isUpdating" class="button" @click="updateFurniture">
+      OK
+    </button>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  props: ['shelf'],
+  props: ['myShelf'],
   data() {
     return {
       isUpdating: false,
       newHeight: null,
-      shelfs: [...this.$store.state.furniture.shelfs],
+      shelf: this.myShelf,
     };
   },
   computed: {
-    ...mapGetters(['totalWidth', 'totalHeight']),
+    ...mapGetters(['totalWidth', 'totalHeight', 'shelfs']),
     cssStyle() {
       return {
         width: this.totalWidth * 3 + 'px',
@@ -65,13 +67,13 @@ export default {
     updateFurniture() {
       this.updateShelfHeight();
       this.updateOtherShelfsHeights();
-      this.updateShelfsInStore();
+      this.updateShelfInStore();
       this.isUpdating = false;
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;
-      this.identifiedShelf.height = this.newHeight;
-      this.identifiedShelf.confirmed = true;
+      this.shelf.height = this.newHeight;
+      this.shelf.confirmed = true;
     },
     updateOtherShelfsHeights() {
       this.shelfs.forEach((shelf) => {
@@ -79,8 +81,8 @@ export default {
           shelf.height = this.newHeightForUnconfirmedShelfs;
       });
     },
-    updateShelfsInStore() {
-      this.$store.state.furniture.shelfs = this.shelfs;
+    updateShelfInStore() {
+      this.identifiedShelf = this.shelf;
     },
     openUpdateModal() {
       this.isUpdating = true;
@@ -92,7 +94,7 @@ export default {
 <style scoped>
 .shelf-height {
   display: inline-block;
-  vertical-align: middle;
+  margin-left: 5rem;
   border: 2px solid rgb(117, 62, 14);
 }
 
@@ -101,8 +103,18 @@ input {
   width: 50px;
 }
 
+.update-input {
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
 .button {
   display: inline-block;
-  vertical-align: middle;
+  margin-left: 1.5rem;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
 }
 </style>

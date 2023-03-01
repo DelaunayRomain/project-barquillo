@@ -1,5 +1,6 @@
 <template>
   <section class="general-form">
+    <h1>Elige lo que quieres agregar a tu librero...</h1>
     <div
       class="hardware hardware--door"
       @click="unlockHardware('door')"
@@ -67,6 +68,7 @@ export default {
   transition: 0.2s;
   cursor: pointer;
   border: solid;
+  font-size: 1.2rem;
 }
 .hardware--door {
   background-color: rgb(255, 127, 80);
@@ -79,11 +81,14 @@ export default {
 }
 .general-form {
   float: left;
+  width: 28vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
+  margin-right: 1.5rem;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  margin: 1rem 0;
+  min-height: 70vh;
+  background-color: white;
 }
 </style>

@@ -46,7 +46,7 @@
     </div>
     <div class="inputs">
       <div class="inputs input">
-        <p v-if="shelf.id === 0">Separaciones?</p>
+        <p v-if="shelf.id === 0">Cantidad</p>
         <select
           name="amountOfSeparators"
           id="amountOfSeparators"
@@ -60,7 +60,7 @@
         </select>
       </div>
       <div class="inputs input">
-        <p v-if="shelf.id === 0">Que estilo?</p>
+        <p v-if="shelf.id === 0">Orientacion</p>
         <select
           name="typeOfSeparators"
           id="typeOfSeparators"
@@ -152,6 +152,7 @@ export default {
 
 <style scoped>
 .container {
+  margin-left: 5rem;
   text-align: left;
   display: inline-block;
   vertical-align: middle;

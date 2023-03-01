@@ -1,19 +1,20 @@
 <template>
   <section class="general-form">
+    <h2>Informacion general del mueble</h2>
     <form @submit.prevent="createFurniture">
-      <div>
-        <label>Altura en cm?</label>
+      <div class="furniture-input">
+        <div><label>Altura en cm?</label></div>
         <input type="number" v-model="furniture.totalHeight" />
       </div>
-      <div>
-        <label>Ancho en cm?</label>
+      <div class="furniture-input">
+        <div><label>Ancho en cm?</label></div>
         <input type="number" v-model="furniture.totalWidth" />
       </div>
-      <div>
-        <label>Cuantos espacios horizontales ?</label>
+      <div class="furniture-input">
+        <div><label>Cuantos espacios horizontales ?</label></div>
         <input type="number" v-model="furniture.shelfsAmount" />
       </div>
-      <button>Ver mueble!</button>
+      <button>Ver mueble</button>
     </form>
   </section>
 </template>
@@ -63,23 +64,35 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  margin-bottom: 3rem;
+}
 input {
   font: inherit;
   padding: 0.15rem;
 }
 label {
-  font-weight: bold;
-  margin-right: 1rem;
-  width: 7rem;
   display: inline-block;
+  text-align: center;
+}
+button {
+  margin-top: 2rem;
+  font-size: 1.3rem;
 }
 .general-form {
   float: left;
+  width: 28vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
+  margin-right: 1.5rem;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  margin: 1rem 0;
+  height: 70vh;
+  background-color: white
+}
+
+.furniture-input {
+  margin-bottom: 2rem;
 }
 </style>

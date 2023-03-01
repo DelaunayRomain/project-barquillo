@@ -1,6 +1,6 @@
 <template>
   <section class="show-furniture">
-    <p>Hace click en el espacio para personalizar</p>
+    <h1>Elige donde poner los separadores</h1>
     <ul>
       <keep-alive
         ><separators
@@ -11,9 +11,13 @@
       ></keep-alive>
     </ul>
     <span
-      ><router-link to="/create-furniture">etapa anterior</router-link
-      ><router-link @click="unlockNextPage" to="/add-hardware"
-        >proxima etapa</router-link
+      ><router-link class="arrow left" to="/create-furniture"
+        >&larr;</router-link
+      ><router-link
+        class="arrow right"
+        @click="unlockNextPage"
+        to="/add-hardware"
+        >&rarr;</router-link
       ></span
     >
   </section>
@@ -38,12 +42,29 @@ export default {
 <style scoped>
 .show-furniture {
   float: right;
-  width: 800px;
+  width: 58vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
+  margin-left: 1.5rem;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  margin: 1rem 0;
+  background-color: white;
+}
+
+.arrow {
+  text-decoration: none;
+  color: black;
+  font-size: 3rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 </style>
