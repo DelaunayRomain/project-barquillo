@@ -15,11 +15,15 @@
           ></shelf>
         </ul>
         <span
-          ><router-link to="/reference">etapa anterior</router-link
-          ><router-link @click="unlockNextPage" to="/add-separators"
-            >proxima etapa</router-link
-          ></span
-        >
+          ><router-link class="arrow left" to="/reference">&larr; </router-link
+          ><router-link
+            class="arrow right"
+            @click="unlockNextPage"
+            to="/add-separators"
+          >
+            &rarr;
+          </router-link>
+        </span>
       </div>
       <p v-else>Completa el formulario, y se dibujara tu mueble aqui!</p>
     </div>
@@ -56,6 +60,23 @@ export default {
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
+  background-color: white;
+}
+
+.arrow {
+  text-decoration: none;
+  color: black;
+  font-size: 3rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 
 h1 {

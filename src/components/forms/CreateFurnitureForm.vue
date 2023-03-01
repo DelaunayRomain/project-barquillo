@@ -89,6 +89,7 @@ button {
   padding: 1rem;
   text-align: center;
   height: 70vh;
+  background-color: white
 }
 
 .furniture-input {
