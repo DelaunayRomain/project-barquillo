@@ -1,11 +1,8 @@
 <template>
   <header>
     <nav>
-      <h1><router-link to="/">Dibuja tu mueble!</router-link></h1>
-      <router-link
-        to="/select-furniture"
-        :class="{ disabled: !stages.selectFurniture }"
-      >
+      <h1><router-link to="/">Muebles Barquillo</router-link></h1>
+      <router-link to="/reference" :class="{ disabled: !stages.reference }">
         1
       </router-link>
       <p>-></p>
