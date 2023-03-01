@@ -7,7 +7,10 @@
       cotizarlo, ayudanos a mejorar esta app!
     </h3>
     <button>
-      <router-link @click="unlockNextPage" to="/reference" class="router-link"
+      <router-link
+        @click="unlockNextPage"
+        to="/select-furniture"
+        class="router-link"
         >Empezar ahora &#x2794;
       </router-link>
     </button>
@@ -22,7 +25,7 @@ export default {
   },
   methods: {
     unlockNextPage() {
-      this.stages.reference = true;
+      this.stages.selectFurniture = true;
     },
   },
 };
