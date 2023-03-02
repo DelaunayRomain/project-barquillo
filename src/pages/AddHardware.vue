@@ -8,9 +8,14 @@
           :style="{
             width: totalWidth * 3 + 'px',
             height: shelf.height * 3 + 'px',
+            borderBottom:
+              shelf.id === shelfs.length - 1
+                ? '2px solid rgb(117, 62, 14)'
+                : '',
           }"
           v-for="shelf in shelfs"
           :key="shelf.id"
+          :id="shelf.id"
           :shelf="shelf"
         >
           <space
@@ -39,6 +44,12 @@ export default {
   components: { Space, AddHardwareForm },
   computed: {
     ...mapGetters(['shelfs', 'totalWidth', 'stages']),
+    cssStyle() {
+      return {
+        width: this.totalWidth * 3 + 'px',
+        height: this.shelf.height * 3 + 'px',
+      };
+    },
   },
 };
 </script>
@@ -64,7 +75,9 @@ h1 {
   text-align: left;
   vertical-align: middle;
   margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
+  border-right: 2px solid rgb(117, 62, 14);
+  border-top: 2px solid rgb(117, 62, 14);
+  border-left: 2px solid rgb(117, 62, 14);
 }
 
 .arrow {

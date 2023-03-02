@@ -6,6 +6,7 @@
         ><separators
           v-for="shelf in shelfs"
           :key="shelf.id"
+          :id="shelf.id"
           :shelf="shelf"
         ></separators
       ></keep-alive>

@@ -21,7 +21,7 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  props: ['myShelf'],
+  props: ['myShelf', 'id'],
   data() {
     return {
       isUpdating: false,
@@ -40,6 +40,10 @@ export default {
           : this.shelf.confirmed
           ? 'rgba(109, 206, 128, 0.2)'
           : '',
+        borderBottom:
+          this.id === this.shelfs.length - 1
+            ? '2px solid rgb(117, 62, 14)'
+            : '',
       };
     },
     newHeightForUnconfirmedShelfs() {
@@ -95,7 +99,9 @@ export default {
 .shelf-height {
   display: inline-block;
   margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
+  border-right: 2px solid rgb(117, 62, 14);
+  border-top: 2px solid rgb(117, 62, 14);
+  border-left: 2px solid rgb(117, 62, 14);
 }
 
 input {

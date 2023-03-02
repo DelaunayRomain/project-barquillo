@@ -80,7 +80,7 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  props: ['shelf'],
+  props: ['shelf', 'id'],
   data() {
     return {
       insideSpaces: this.shelf.insideSpaces,
@@ -92,6 +92,10 @@ export default {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.shelf.height * 3 + 'px',
+        borderBottom:
+          this.id === this.shelfs.length - 1
+            ? '2px solid rgb(117, 62, 14)'
+            : '',
       };
     },
     widthVariationRelatedToTypeOfSeparator() {
@@ -156,7 +160,9 @@ export default {
   text-align: left;
   display: inline-block;
   vertical-align: middle;
-  border: 2px solid rgb(117, 62, 14);
+  border-right: 2px solid rgb(117, 62, 14);
+  border-top: 2px solid rgb(117, 62, 14);
+  border-left: 2px solid rgb(117, 62, 14);
 }
 .inputs {
   width: 50%;

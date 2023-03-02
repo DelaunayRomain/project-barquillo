@@ -55,7 +55,7 @@ export default {
         insideSpaces: {
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          spaces: [{ id: 1, width: 100 }],
+          spaces: [{ id: 0, width: 100 }],
         },
       };
     },
@@ -89,7 +89,7 @@ button {
   padding: 1rem;
   text-align: center;
   height: 70vh;
-  background-color: white
+  background-color: white;
 }
 
 .furniture-input {

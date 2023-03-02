@@ -21,6 +21,10 @@ export default {
       return {
         width: this.space.width + '%',
         backgroundColor: this.backgroundColor,
+        borderRight:
+          this.mySpace.id === this.shelf.insideSpaces.spaces.length - 1
+            ? ''
+            : '2px solid rgb(117, 62, 14)',
       };
     },
     backgroundColor() {
@@ -66,6 +70,9 @@ export default {
       this.identifiedSpace = this.space;
     },
   },
+  created() {
+    console.log(this.shelf.insideSpaces);
+  },
 };
 </script>
 
@@ -73,6 +80,5 @@ export default {
 .separation {
   display: inline-block;
   height: 100%;
-  border-right: 2px solid rgb(117, 62, 14);
 }
 </style>
