@@ -41,6 +41,7 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem;
   border-radius: 10px;
+  background-color: white;
 
   :hover {
     transform: scale(2);
