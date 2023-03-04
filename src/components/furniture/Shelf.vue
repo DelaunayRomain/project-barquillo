@@ -10,7 +10,7 @@
           /><span>cm</span>
         </div>
       </div>
-      <p v-else>{{ shelf.height }} cm</p>
+      <p v-else>{{ Math.round(shelf.height) }} cm</p>
     </div>
     <button v-if="isUpdating" class="button" @click="updateFurniture">
       OK
