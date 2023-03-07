@@ -3,11 +3,12 @@
     <h1>Elige donde poner los separadores</h1>
     <ul>
       <keep-alive
-        ><separators
+        ><shelf
           v-for="shelf in shelfs"
           :key="shelf.id"
-          :shelf="shelf"
-        ></separators
+          :myShelf="shelf"
+          logic="renderSpaces"
+        ></shelf
       ></keep-alive>
     </ul>
     <span
@@ -24,10 +25,10 @@
 </template>
 
 <script>
-import Separators from '../components/furniture/Separators.vue';
+import Shelf from '../components/furniture/Shelf.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Separators },
+  components: { Shelf },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
   },

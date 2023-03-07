@@ -5,13 +5,22 @@
     :style="cssStyle"
     class="shelf"
   ></shelf-height-logic>
+
+  <space
+    v-if="logic === 'renderSpaces'"
+    v-for="space in myShelf.insideSpaces.spaces"
+    :key="space.id"
+    :mySpace="space"
+    :shelf="myShelf"
+  ></space>
 </template>
 
 <script>
 import ShelfHeightLogic from '../logic/ShelfHeightLogic.vue';
+import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { ShelfHeightLogic },
+  components: { ShelfHeightLogic, Space },
   props: ['myShelf', 'logic'],
   data() {
     return {};
