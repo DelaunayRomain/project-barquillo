@@ -1,10 +1,8 @@
 <template>
   <div class="separation" :style="cssStyle">
-    <add-hardware-logic
-      v-if="logic === addHardware"
-      :space="mySpace"
-      :shelf="shelf"
-    ></add-hardware-logic>
+    <div v-if="logic === addHardware">
+      <add-hardware-logic :space="mySpace" :shelf="shelf"></add-hardware-logic>
+    </div>
   </div>
 </template>
 
@@ -21,7 +19,7 @@ export default {
     ...mapGetters(['shelfs', 'hardware']),
     cssStyle() {
       return {
-        width: this.space.width + '%',
+        width: this.mySpace.width + '%',
       };
     },
   },

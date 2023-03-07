@@ -1,18 +1,19 @@
 <template>
-  <shelf-height-logic
-    v-if="logic === 'shelfHeightLogic'"
-    :myShelf="myShelf"
-    :style="cssStyle"
-    class="shelf"
-  ></shelf-height-logic>
-
-  <space
-    v-if="logic === 'renderSpaces'"
-    v-for="space in myShelf.insideSpaces.spaces"
-    :key="space.id"
-    :mySpace="space"
-    :shelf="myShelf"
-  ></space>
+  <div v-if="logic === 'shelfHeightLogic'">
+    <shelf-height-logic
+      :myShelf="myShelf"
+      :style="cssStyle"
+      class="shelf"
+    ></shelf-height-logic>
+  </div>
+  <div v-if="logic === 'renderSpaces'">
+    <space
+      v-for="space in myShelf.insideSpaces.spaces"
+      :key="space.id"
+      :mySpace="space"
+      :shelf="myShelf"
+    ></space>
+  </div>
 </template>
 
 <script>

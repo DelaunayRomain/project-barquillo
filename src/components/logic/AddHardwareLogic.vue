@@ -22,8 +22,7 @@ export default {
     ...mapGetters(['shelfs', 'hardware']),
     cssStyle() {
       return {
-        width: this.space.width + '%',
-        backgroundColor: this.backgroundColor,
+        backgroundColor: 'rgb(255, 127, 80)',
       };
     },
     backgroundColor() {
@@ -49,7 +48,6 @@ export default {
       this.resetHardwareInSpace();
       this.pushHardware();
       this.updateSpaceInStore();
-      console.log(this.identifiedSpace);
     },
     resetHardwareInSpace() {
       if (this.space.hardware) {
