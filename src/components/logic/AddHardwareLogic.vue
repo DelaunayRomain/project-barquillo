@@ -1,6 +1,9 @@
 <template>
   <div class="separation" :style="cssStyle" @click="addHardwareToSpace">
-    <add-hardware-handle-logic :space="space" :shelf="shelf"></hardware-handle>
+    <add-hardware-handle-logic
+      :space="space"
+      :shelf="shelf"
+    ></add-hardware-handle-logic>
   </div>
 </template>
 
