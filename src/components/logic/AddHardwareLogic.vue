@@ -1,14 +1,14 @@
 <template>
   <div class="separation" :style="cssStyle" @click="addHardwareToSpace">
-    <hardware-handle :space="space" :shelf="shelf"></hardware-handle>
+    <add-hardware-handle-logic :space="space" :shelf="shelf"></hardware-handle>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import HardwareHandle from './HardwareHandle.vue';
+import AddHardwareHandleLogic from './AddHardwareHandleLogic.vue';
 export default {
-  components: { HardwareHandle },
+  components: { AddHardwareHandleLogic },
   props: ['mySpace', 'shelf'],
   data() {
     return {
