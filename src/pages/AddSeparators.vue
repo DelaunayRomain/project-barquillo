@@ -1,4 +1,7 @@
 <template>
+  <keep-alive>
+    <add-separator-form></add-separator-form>
+  </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
     <ul>
@@ -25,10 +28,11 @@
 </template>
 
 <script>
+import AddSeparatorForm from '../components/forms/AddSeparatorForm.vue';
 import Shelf from '../components/furniture/Shelf.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Shelf },
+  components: { Shelf, AddSeparatorForm },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
   },
