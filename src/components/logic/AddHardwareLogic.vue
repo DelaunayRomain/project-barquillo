@@ -1,5 +1,5 @@
 <template>
-  <div class="separation" :style="cssStyle" @click="addHardwareToSpace">
+  <div :style="cssStyle" @click="addHardwareToSpace">
     <add-hardware-handle-logic
       :space="space"
       :shelf="shelf"
@@ -70,10 +70,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.separation {
-  display: inline-block;
-  height: 100%;
-  border-right: 2px solid rgb(117, 62, 14);
-}
-</style>
+<style scoped></style>
