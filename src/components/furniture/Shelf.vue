@@ -6,6 +6,13 @@
       class="shelf"
     ></shelf-height-logic>
   </div>
+  <div v-if="logic === 'addSeparatorslogic'">
+    <add-separators-logic
+      :myShelf="myShelf"
+      :style="cssStyle"
+      class="shelf"
+    ></add-separators-logic>
+  </div>
   <div v-if="logic === 'renderSpaces'">
     <space
       v-for="space in myShelf.insideSpaces.spaces"
@@ -20,10 +27,11 @@
 
 <script>
 import ShelfHeightLogic from '../logic/ShelfHeightLogic.vue';
+import AddSeparatorsLogic from '../logic/AddSeparatorsLogic.vue';
 import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { ShelfHeightLogic, Space },
+  components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
   props: ['myShelf', 'logic'],
   data() {
     return {};
