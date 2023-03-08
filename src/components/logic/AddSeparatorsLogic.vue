@@ -27,6 +27,7 @@ import Separator3 from '../furniture/separators/Separator3.vue';
 export default {
   components: { Separator1, Separator2, Separator3 },
   props: ['myShelf'],
+  emits: ['updating-separators'],
   data() {
     return {};
   },
@@ -65,7 +66,9 @@ export default {
   },
   methods: {
     updateSeparatorsInShelf() {
+      this.shelfs.forEach((shelf) => (shelf.insideSpaces.isUpdating = false));
       this.identifiedShelf.insideSpaces.isUpdating = true;
+      this.$emit('updating-separators', this.identifiedShelf);
     },
   },
   created() {
