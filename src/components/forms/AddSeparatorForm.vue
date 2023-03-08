@@ -8,7 +8,7 @@
             <select
               name="amountOfSeparators"
               id="amountOfSeparators"
-              v-model="amountOfSeparators"
+              v-model.number="amountOfSeparators"
               @change="showSeparators('amountOfSeparators')"
             >
               <option value="0">0</option>

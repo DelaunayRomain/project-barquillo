@@ -48,18 +48,18 @@ export default {
       const objectTypeSeparators = {
         centered: 0,
         left: -12 / this.insideSpaces.amountOfSeparators,
-        right: 12 / this.insideSpaces.amountOfSeparators,
+        right: 10 / this.insideSpaces.amountOfSeparators,
       };
       return objectTypeSeparators[this.insideSpaces.typeOfSeparators];
     },
     spaceWidth() {
-      const objectSpaceWidth = {
-        0: 100,
-        1: 50 + this.widthVariationRelatedToTypeOfSeparator,
-        2: 33.3 + this.widthVariationRelatedToTypeOfSeparator,
-        3: 25 + this.widthVariationRelatedToTypeOfSeparator,
-      };
-      return objectSpaceWidth[String(this.insideSpaces.amountOfSeparators)];
+      const mapSpaceWidth = new Map([
+        ([0, 100],
+        [1, 50 + this.widthVariationRelatedToTypeOfSeparator],
+        [2, 33.3 + this.widthVariationRelatedToTypeOfSeparator],
+        [3, 25 + this.widthVariationRelatedToTypeOfSeparator]),
+      ]);
+      return mapSpaceWidth.get(this.computedAmountOfSeparators);
     },
   },
   methods: {
