@@ -64,9 +64,6 @@ export default {
       this.$emit('updating-separators', this.identifiedShelf);
     },
   },
-  created() {
-    console.log(this.myShelf);
-  },
 };
 </script>
 

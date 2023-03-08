@@ -55,7 +55,6 @@ export default {
     updatingShelf() {
       return this.shelfs.find((shelf) => shelf === this.myUpdatingShelf);
     },
-
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
         centered: 0,
@@ -83,6 +82,7 @@ export default {
         this.amountOfSeparators;
       this.updatingShelf.insideSpaces.typeOfSeparators = this.typeOfSeparators;
       this.pushSpacesIntoArray();
+      console.log(this.updatingShelf.insideSpaces.spaces);
     },
     pushSpacesIntoArray() {
       this.updatingShelf.insideSpaces.spaces = [];
