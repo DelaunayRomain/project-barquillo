@@ -10,7 +10,7 @@
           v-for="shelf in shelfs"
           :key="shelf.id"
           :myShelf="shelf"
-          logic="renderSpaces"
+          logic="addSeparatorsLogic"
         ></shelf
       ></keep-alive>
     </ul>

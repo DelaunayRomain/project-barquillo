@@ -6,7 +6,7 @@
       class="shelf"
     ></shelf-height-logic>
   </div>
-  <div v-if="logic === 'addSeparatorslogic'">
+  <div v-if="logic === 'addSeparatorsLogic'">
     <add-separators-logic
       :myShelf="myShelf"
       :style="cssStyle"

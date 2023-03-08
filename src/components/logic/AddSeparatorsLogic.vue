@@ -1,5 +1,9 @@
 <template>
-  <div @click="updateSeparatorsInShelf" class="flex-container">
+  <div
+    @click="updateSeparatorsInShelf"
+    class="shelf"
+    :style="{ backgroundColor: shelfBackgroundColor }"
+  >
     <separator-1
       v-if="computedAmountOfSeparators === 1"
       :spaceWidth="spaceWidth"
@@ -34,15 +38,10 @@ export default {
     computedAmountOfSeparators() {
       return this.identifiedShelf.insideSpaces.amountOfSeparators;
     },
-    cssStyleContainer() {
-      return {
-        width: this.totalWidth * 3 + 'px',
-        height: this.shelf.height * 3 + 'px',
-        backgroundColor:
-          this.identifiedShelf.insideSpaces.isUpdating === true
-            ? 'rgba(109, 206, 128, 0.2)'
-            : '',
-      };
+    shelfBackgroundColor() {
+      return this.identifiedShelf.insideSpaces.isUpdating === true
+        ? 'rgba(109, 206, 128, 0.2)'
+        : '';
     },
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
@@ -67,16 +66,15 @@ export default {
       this.identifiedShelf.insideSpaces.isUpdating = true;
     },
   },
+  created() {
+    console.log(this.myShelf);
+  },
 };
 </script>
 
 <style scoped>
 .shelf {
-  margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
-}
-.flex-container {
-  display: flex;
-  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 </style>
