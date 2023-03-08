@@ -1,6 +1,8 @@
 <template>
   <keep-alive>
-    <add-separator-form></add-separator-form>
+    <add-separator-form
+      :myUpdatingShelf="computedUpdatingShelf"
+    ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
@@ -10,6 +12,7 @@
           v-for="shelf in shelfs"
           :key="shelf.id"
           :myShelf="shelf"
+          @updating-separators="passIdentifiedShelfToForm"
           logic="addSeparatorsLogic"
         ></shelf
       ></keep-alive>
@@ -33,12 +36,23 @@ import Shelf from '../components/furniture/Shelf.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { Shelf, AddSeparatorForm },
+  data() {
+    return {
+      updatingShelfForSeparators: '',
+    };
+  },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
+    computedUpdatingShelf() {
+      return this.updatingShelfForSeparators;
+    },
   },
   methods: {
     unlockNextPage() {
       this.stages.addHardware = true;
+    },
+    passIdentifiedShelfToForm(shelf) {
+      this.updatingShelfForSeparators = shelf;
     },
   },
 };

@@ -42,17 +42,17 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  props: ['myUpdatingShelf'],
   data() {
     return {
       amountOfSeparators: 0,
       typeOfSeparators: 'centered',
-      spaces: [],
     };
   },
   computed: {
     ...mapGetters(['shelfs']),
     updatingShelf() {
-      return this.shelfs.find((shelf) => shelf.isUpdating === true);
+      return this.shelfs.find((shelf) => shelf === this.myUpdatingShelf);
     },
 
     widthVariationRelatedToTypeOfSeparator() {
@@ -92,7 +92,10 @@ export default {
     },
     pushSeparatorWidth() {
       for (let id = 0; id < this.amountOfSeparators; id++) {
-        this.spaces.push({ id: id, width: this.spaceWidth });
+        this.updatingShelf.insideSpaces.spaces.push({
+          id: id,
+          width: this.spaceWidth,
+        });
       }
     },
     pushRemainingWidth() {
@@ -102,7 +105,7 @@ export default {
       });
     },
     resetData() {
-      this.identifiedShelf.insideSpaces.isUpdating = false;
+      this.updatingShelf.insideSpaces.isUpdating = false;
       this.amountOfSeparators = 0;
       this.typeOfSeparators = 'centered';
     },

@@ -10,6 +10,7 @@
     <add-separators-logic
       :myShelf="myShelf"
       :style="cssStyle"
+      @updating-separators="emitUpdatingSeparators"
       class="shelf"
     ></add-separators-logic>
   </div>
@@ -33,6 +34,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
   props: ['myShelf', 'logic'],
+  emits: ['updating-separators'],
   data() {
     return {};
   },
@@ -45,7 +47,11 @@ export default {
       };
     },
   },
-  methods: {},
+  methods: {
+    emitUpdatingSeparators(shelf) {
+      this.$emit('updating-separators', shelf);
+    },
+  },
 };
 </script>
 
