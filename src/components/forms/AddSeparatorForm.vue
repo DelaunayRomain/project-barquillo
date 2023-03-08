@@ -42,7 +42,6 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  props: ['updating-shelf'],
   data() {
     return {
       amountOfSeparators: 0,
