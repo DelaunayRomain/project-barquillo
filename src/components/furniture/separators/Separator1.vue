@@ -7,6 +7,16 @@
   ></div>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: ['spaceWidth'],
+};
+</script>
 
-<style scoped></style>
+<style scoped>
+.separator {
+  display: inline-block;
+  height: 100%;
+  border-right: 2px solid rgb(117, 62, 14);
+}
+</style>

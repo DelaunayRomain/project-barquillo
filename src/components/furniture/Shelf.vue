@@ -18,7 +18,7 @@
       v-for="space in myShelf.insideSpaces.spaces"
       :key="space.id"
       :mySpace="space"
-      :shelf="myShelf"
+      :myShelf="myShelf"
       :totalWidth="totalWidth"
       class="shelf"
     ></space>

@@ -3,13 +3,13 @@
     <div v-if="logic === addSeparators">
       <add-separators-logic
         :mySpace="mySpace"
-        :shelf="shelf"
+        :shelf="myShelf"
       ></add-separators-logic>
     </div>
     <div v-if="logic === addHardware">
       <add-hardware-logic
         :mySpace="mySpace"
-        :shelf="shelf"
+        :shelf="myShelf"
       ></add-hardware-logic>
     </div>
   </div>
@@ -21,7 +21,7 @@ import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
 import AddSeparatorsLogic from '../logic/AddSeparatorsLogic.vue';
 export default {
   components: { AddHardwareLogic, AddSeparatorsLogic },
-  props: ['mySpace', 'shelf', 'logic', 'totalWidth'],
+  props: ['mySpace', 'myShelf', 'logic', 'totalWidth'],
   data() {
     return {};
   },
@@ -30,7 +30,7 @@ export default {
     cssStyle() {
       return {
         width: this.widthOfSpace,
-        height: this.shelf.height * 3 + 'px',
+        height: this.myShelf.height * 3 + 'px',
       };
     },
     widthOfSpace() {
