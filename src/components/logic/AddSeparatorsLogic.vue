@@ -28,22 +28,43 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs']),
+    identifiedShelf() {
+      return this.shelfs.find((shelf) => shelf.id === this.myShelf.id);
+    },
     computedAmountOfSeparators() {
-      return this.myShelf.insideSpaces.amountOfSeparators;
+      return this.identifiedShelf.insideSpaces.amountOfSeparators;
+    },
+    cssStyleContainer() {
+      return {
+        width: this.totalWidth * 3 + 'px',
+        height: this.shelf.height * 3 + 'px',
+        backgroundColor:
+          this.identifiedShelf.insideSpaces.isUpdating === true
+            ? 'rgba(109, 206, 128, 0.2)'
+            : '',
+      };
+    },
+    widthVariationRelatedToTypeOfSeparator() {
+      const objectTypeSeparators = {
+        centered: 0,
+        left: -12 / this.insideSpaces.amountOfSeparators,
+        right: 12 / this.insideSpaces.amountOfSeparators,
+      };
+      return objectTypeSeparators[this.insideSpaces.typeOfSeparators];
+    },
+    spaceWidth() {
+      const objectSpaceWidth = {
+        0: 100,
+        1: 50 + this.widthVariationRelatedToTypeOfSeparator,
+        2: 33.3 + this.widthVariationRelatedToTypeOfSeparator,
+        3: 25 + this.widthVariationRelatedToTypeOfSeparator,
+      };
+      return objectSpaceWidth[String(this.insideSpaces.amountOfSeparators)];
     },
   },
   methods: {
     updateSeparatorsInShelf() {
-      if (
-        !this.shelfs.some((shelf) => shelf.insideSpaces.isUpdating === true)
-      ) {
-        this.shelfs.forEach((shelf) => (shelf.insideSpaces.isUpdating = false));
-        this.insideSpaces.isUpdating = true;
-        this.shelfs.find(
-          (shelf) => shelf.id === this.shelf.id
-        ).isUpdating = true;
-        this.$emit('updateSeparators', this.shelf);
-      }
+      this.identifiedShelf.insideSpaces.isUpdating = true;
     },
   },
 };
