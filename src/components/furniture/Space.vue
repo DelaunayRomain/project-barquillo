@@ -21,12 +21,12 @@ import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
 import AddSeparatorsLogic from '../logic/AddSeparatorsLogic.vue';
 export default {
   components: { AddHardwareLogic, AddSeparatorsLogic },
-  props: ['mySpace', 'myShelf', 'logic', 'totalWidth'],
+  props: ['mySpace', 'myShelf', 'logic'],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware']),
+    ...mapGetters(['shelfs', 'hardware', 'totalWidth']),
     cssStyle() {
       return {
         width: this.widthOfSpace,

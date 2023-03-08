@@ -20,7 +20,6 @@
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
-      :totalWidth="totalWidth"
       class="shelf"
     ></space>
   </div>

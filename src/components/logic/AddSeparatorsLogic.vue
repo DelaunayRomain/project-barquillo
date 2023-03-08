@@ -4,28 +4,21 @@
     class="shelf"
     :style="{ backgroundColor: shelfBackgroundColor }"
   >
-    <separator-1
-      v-if="computedAmountOfSeparators === 1"
-      :spaceWidth="spaceWidth"
-    ></separator-1>
-    <separator-2
-      v-if="computedAmountOfSeparators === 2"
-      :spaceWidth="spaceWidth"
-    ></separator-2>
-    <separator-3
-      v-if="computedAmountOfSeparators === 3"
-      :spaceWidth="spaceWidth"
-    ></separator-3>
+    <space
+      v-for="space in myShelf.insideSpaces.spaces"
+      :key="space.id"
+      :mySpace="space"
+      :myShelf="myShelf"
+    ></space>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import Separator1 from '../furniture/separators/Separator1.vue';
-import Separator2 from '../furniture/separators/Separator2.vue';
-import Separator3 from '../furniture/separators/Separator3.vue';
+
+import Space from '../furniture/Space.vue';
 export default {
-  components: { Separator1, Separator2, Separator3 },
+  components: { Space },
   props: ['myShelf'],
   emits: ['updating-separators'],
   data() {
