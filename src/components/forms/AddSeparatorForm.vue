@@ -1,8 +1,8 @@
 <template>
   <section class="general-form">
     <h2>Separadores</h2>
-    <div v-if="updatingShelf">
-      <form @submit.prevent="updateSeparators">
+    <div v-if="isUpdating">
+      <form @submit.prevent="clearData">
         <div class="furniture-input">
           <label>Cuantos Separadores ?</label>
           <select
@@ -47,6 +47,7 @@ export default {
     return {
       amountOfSeparators: 0,
       typeOfSeparators: 'centered',
+      isUpdating: false,
     };
   },
   computed: {
@@ -72,7 +73,6 @@ export default {
       ]);
       return mapSpaceWidth.get(this.amountOfSeparators);
     },
-
     remainingWidth() {
       return 100 - this.amountOfSeparators * this.spaceWidth;
     },
@@ -83,7 +83,6 @@ export default {
         this.amountOfSeparators;
       this.updatingShelf.insideSpaces.typeOfSeparators = this.typeOfSeparators;
       this.pushSpacesIntoArray();
-      this.resetData();
     },
     pushSpacesIntoArray() {
       this.updatingShelf.insideSpaces.spaces = [];
@@ -104,10 +103,16 @@ export default {
         width: this.remainingWidth,
       });
     },
-    resetData() {
+    clearData() {
       this.updatingShelf.insideSpaces.isUpdating = false;
+      this.isUpdating = false;
       this.amountOfSeparators = 0;
       this.typeOfSeparators = 'centered';
+    },
+  },
+  watch: {
+    myUpdatingShelf() {
+      this.isUpdating = true;
     },
   },
 };
