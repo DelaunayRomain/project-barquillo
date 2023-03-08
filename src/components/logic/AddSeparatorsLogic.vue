@@ -46,10 +46,12 @@ export default {
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
         centered: 0,
-        left: -12 / this.insideSpaces.amountOfSeparators,
-        right: 10 / this.insideSpaces.amountOfSeparators,
+        left: -12 / this.computedAmountOfSeparators,
+        right: 10 / this.computedAmountOfSeparators,
       };
-      return objectTypeSeparators[this.insideSpaces.typeOfSeparators];
+      return objectTypeSeparators[
+        this.identifiedShelf.insideSpaces.typeOfSeparators
+      ];
     },
     spaceWidth() {
       const mapSpaceWidth = new Map([
