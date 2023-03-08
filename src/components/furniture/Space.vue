@@ -1,7 +1,10 @@
 <template>
   <div class="separation" :style="cssStyle">
     <div v-if="logic === addHardware">
-      <add-hardware-logic :space="mySpace" :shelf="shelf"></add-hardware-logic>
+      <add-hardware-logic
+        :mySpace="mySpace"
+        :shelf="shelf"
+      ></add-hardware-logic>
     </div>
   </div>
 </template>
@@ -11,7 +14,7 @@ import { mapGetters } from 'vuex';
 import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
 export default {
   components: { AddHardwareLogic },
-  props: ['mySpace', 'shelf', 'logic'],
+  props: ['mySpace', 'shelf', 'logic', 'totalWidth'],
   data() {
     return {};
   },
@@ -19,8 +22,12 @@ export default {
     ...mapGetters(['shelfs', 'hardware']),
     cssStyle() {
       return {
-        width: this.mySpace.width + '%',
+        width: this.widthOfSpace,
+        height: this.shelf.height * 3 + 'px',
       };
+    },
+    widthOfSpace() {
+      return (this.totalWidth * this.mySpace.width * 3) / 100 + 'px';
     },
   },
   methods: {},

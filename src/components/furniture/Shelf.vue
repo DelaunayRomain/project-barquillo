@@ -12,6 +12,8 @@
       :key="space.id"
       :mySpace="space"
       :shelf="myShelf"
+      :totalWidth="totalWidth"
+      class="shelf"
     ></space>
   </div>
 </template>
