@@ -58,18 +58,21 @@ export default {
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
         centered: 0,
-        left: -12 / this.amountOfSeparators,
-        right: 12 / this.amountOfSeparators,
+        left: -12 / this.updatingShelf.insideSpaces.amountOfSeparators,
+        right: 12 / this.updatingShelf.insideSpaces.amountOfSeparators,
       };
-      return objectTypeSeparators[this.typeOfSeparators];
+      return objectTypeSeparators[
+        this.updatingShelf.insideSpaces.typeOfSeparators
+      ];
     },
     spaceWidth() {
       const mapSpaceWidth = new Map([
-        ([0, 100],
+        [0, 100],
         [1, 50 + this.widthVariationRelatedToTypeOfSeparator],
         [2, 33.3 + this.widthVariationRelatedToTypeOfSeparator],
-        [3, 25 + this.widthVariationRelatedToTypeOfSeparator]),
+        [3, 25 + this.widthVariationRelatedToTypeOfSeparator],
       ]);
+      console.log(mapSpaceWidth.get(this.amountOfSeparators));
       return mapSpaceWidth.get(this.amountOfSeparators);
     },
     remainingWidth() {
@@ -82,7 +85,6 @@ export default {
         this.amountOfSeparators;
       this.updatingShelf.insideSpaces.typeOfSeparators = this.typeOfSeparators;
       this.pushSpacesIntoArray();
-      console.log(this.updatingShelf.insideSpaces.spaces);
     },
     pushSpacesIntoArray() {
       this.updatingShelf.insideSpaces.spaces = [];
@@ -90,7 +92,11 @@ export default {
       this.pushRemainingWidth();
     },
     pushSeparatorWidth() {
-      for (let id = 0; id < this.amountOfSeparators; id++) {
+      for (
+        let id = 0;
+        id < this.updatingShelf.insideSpaces.amountOfSeparators;
+        id++
+      ) {
         this.updatingShelf.insideSpaces.spaces.push({
           id: id,
           width: this.spaceWidth,

@@ -14,13 +14,14 @@
       class="shelf"
     ></add-separators-logic>
   </div>
-  <div v-if="logic === 'renderSpaces'">
+  <div v-if="logic === 'addHardware'">
     <space
       v-for="space in myShelf.insideSpaces.spaces"
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
       class="shelf"
+      logic="addhardware"
     ></space>
   </div>
 </template>
