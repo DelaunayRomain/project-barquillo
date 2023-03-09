@@ -3,7 +3,7 @@
     <div v-if="logic === addHardware">
       <add-hardware-logic
         :mySpace="mySpace"
-        :shelf="myShelf"
+        :myShelf="myShelf"
       ></add-hardware-logic>
     </div>
   </div>
@@ -21,14 +21,6 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs', 'hardware', 'totalWidth']),
-    cssStyle() {
-      return {
-        width: this.mySpace.width + '%',
-      };
-    },
-    widthOfSpace() {
-      return (this.totalWidth * this.mySpace.width * 3) / 100 + 'px';
-    },
   },
   methods: {},
 };

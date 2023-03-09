@@ -1,17 +1,17 @@
 <template>
   <div :style="cssStyle" @click="addHardwareToSpace">
-    <add-hardware-handle-logic
+    <display-hardware-handle-logic
       :space="space"
       :shelf="shelf"
-    ></add-hardware-handle-logic>
+    ></display-hardware-handle-logic>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import AddHardwareHandleLogic from './AddHardwareHandleLogic.vue';
+import DisplayHardwareHandleLogic from './DisplayHardwareHandleLogic.vue';
 export default {
-  components: { AddHardwareHandleLogic },
+  components: { DisplayHardwareHandleLogic },
   props: ['mySpace', 'shelf'],
   data() {
     return {

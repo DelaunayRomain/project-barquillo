@@ -21,7 +21,7 @@
       :mySpace="space"
       :myShelf="myShelf"
       class="shelf"
-      logic="addhardware"
+      :logic="logic"
     ></space>
   </div>
 </template>

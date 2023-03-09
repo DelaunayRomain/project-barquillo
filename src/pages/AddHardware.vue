@@ -3,22 +3,13 @@
     <h1>... y haz click en el/los espacios de tu eleccion</h1>
     <ul>
       <keep-alive
-        ><div
-          class="container"
-          :style="{
-            width: totalWidth * 3 + 'px',
-            height: shelf.height * 3 + 'px',
-          }"
+        ><shelf
           v-for="shelf in shelfs"
           :key="shelf.id"
           :shelf="shelf"
+          logic="addHardware"
         >
-          <space
-            v-for="space in shelf.insideSpaces.spaces"
-            :key="space.id"
-            :mySpace="space"
-            :shelf="shelf"
-          ></space></div
+        </shelf
       ></keep-alive>
     </ul>
     <span
@@ -32,11 +23,11 @@
 </template>
 
 <script>
-import Space from '../components/furniture/Space.vue';
+import Shelf from '../components/furniture/Space.vue';
 import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Space, AddHardwareForm },
+  components: { Shelf, AddHardwareForm },
   computed: {
     ...mapGetters(['shelfs', 'totalWidth', 'stages']),
   },
